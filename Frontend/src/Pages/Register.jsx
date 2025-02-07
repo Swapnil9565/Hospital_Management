@@ -22,7 +22,7 @@ const Register = () => {
      e.preventDefault();
      try{
 
-       const res=await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/auth/register`,registerData,{
+       const res=await axios.post("https://hospital-management-99yz.onrender.com/api/auth/register",registerData,{
         "Content-Type":"application/json",
        })
        if(res.status===200){

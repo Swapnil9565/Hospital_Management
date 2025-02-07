@@ -20,7 +20,7 @@ const Login = () => {
   const handleLogin=async(e)=>{
      e.preventDefault();
      try {
-      const res=await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/auth/login`,loginData,{
+      const res=await axios.post("https://hospital-management-99yz.onrender.com/api/auth/login",loginData,{
         headers:{
           "Content-Type":"application/json"
         }

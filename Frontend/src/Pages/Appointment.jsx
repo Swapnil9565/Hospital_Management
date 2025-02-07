@@ -29,7 +29,7 @@ function Appointment() {
   const handleSubmit = async(e) => {
     e.preventDefault();
     
-    const res=await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/user/appointment`,patientInfo,{
+    const res=await axios.post("https://hospital-management-99yz.onrender.com/api/user/appointment",patientInfo,{
       headers:{
         "Content-Type":"application/json",
         "Authorization":localStorage.getItem("token")
