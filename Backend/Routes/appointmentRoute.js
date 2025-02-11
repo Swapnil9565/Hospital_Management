@@ -28,4 +28,21 @@ router.post("/appointment", authMiddleware, async (req, res) => {
   }
 });
 
+router.get("/checkAppointments",authMiddleware, async (_, res) => {
+  try {
+      const appointments = await appointmentModel.find();
+      console.log(appointments);
+     
+      if (appointments.length > 0) {
+          return res.status(200).json({ message: "Appointments", appointments });
+      } else {
+          return res.status(404).json({ message: "No appointments yet" });
+      }
+  } catch (error) {
+      console.error("Error fetching appointments:", error);
+      return res.status(500).json({ message: "Server error" });
+  }
+});
+
+
 module.exports = router;

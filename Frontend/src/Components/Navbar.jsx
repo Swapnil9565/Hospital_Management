@@ -17,6 +17,7 @@ function Navbar({isLoggedIn,setIsLoggedIn}) {
   const handleLogout=()=>{
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    localStorage.removeItem("role");
     setIsLoggedIn(false);
     return toast.success("Logout successfully", {
                   position: "top-center",

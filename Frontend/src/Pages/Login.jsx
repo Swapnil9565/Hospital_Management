@@ -28,6 +28,7 @@ const Login = () => {
   
        if(res.status===200){
          localStorage.setItem("token",res.data.token);
+         localStorage.setItem("role",res.data.user.role);
          localStorage.setItem("user",JSON.stringify(res.data.user))
           toast.success(res.data.message, {
                        position: "top-center",
@@ -39,7 +40,11 @@ const Login = () => {
                        progress: undefined,
                      });
                      setTimeout(() => {
-                      navigate("/");
+                      if (res.data.user.role === "admin") {
+                        navigate("/admin/dashboard"); 
+                      } else {
+                        navigate("/");
+                      }
                     }, 2000);
        }
        

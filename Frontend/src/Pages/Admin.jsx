@@ -1,11 +1,16 @@
-import React from 'react'
-import Sidebar from './Sidebar'
+import React from "react"
+import Sidebar from "../Components/Sidebar"
+import Topbar from '../Components/Topbar'
+import { Outlet } from 'react-router-dom'
 
 const Admin = () => {
   return (
-    <div>
+    <div className='flex w-full'>
       <Sidebar/>
-      
+      <div>
+      <Topbar/>
+      <Outlet/>
+      </div>
     </div>
   )
 }
