@@ -11,7 +11,7 @@ function About() {
       <div className="my-5 w-1/3">
            <h1 className='font-bold text-3xl'>Best medical care for yourself and your family</h1>
            <p className='leading-normal my-5'>Welcome to <b className='text-blue-400'>MedZone</b>, where compassionate care and advanced medical expertise meet to serve you and your loved ones. Our mission is to provide exceptional, patient-centered healthcare to our community and beyond, ensuring that each person who walks through our doors receives the highest quality treatment in a safe, comfortable, and supportive environment</p>
-           <div className="flex flex-wrap items-center gap-5">
+           <div className="flex flex-wrap items-center gap-4">
             <div className="bg-blue-200 rounded-full  text-center p-5 transition-all hover:bg-blue-300">
               <FontAwesomeIcon icon={faUserDoctor}/>
               <p>Qualified <br /><span className='text-blue-600'>Doctors</span></p>

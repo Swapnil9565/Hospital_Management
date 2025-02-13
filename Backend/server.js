@@ -5,6 +5,7 @@ const dotenv=require("dotenv");
 const cors=require("cors");
 const authRouter=require("./Routes/authRoute")
 const appoRouter=require("./Routes/appointmentRoute")
+const messageRouter=require("./Routes/messageRoute")
 
 dotenv.config();
 const app=express();
@@ -18,6 +19,7 @@ app.use(cors());
 //Routes
 app.use("/api/auth",authRouter);
 app.use("/api/user",appoRouter);
+app.use("/api/user",messageRouter);
 
 app.use(express.static(path.join(_dirname,"/Frontend/dist")));
 app.get("*",(req,res)=>{

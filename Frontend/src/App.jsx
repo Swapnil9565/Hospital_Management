@@ -9,8 +9,8 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 import Dashboard from "./Pages/Dashboard";
 import AddDoctors from "./Pages/AddDoctors";
 import SeeAppointments from "./Pages/SeeAppointments";
-import Messages from "./Pages/Messages";
 import Doctors from "./Pages/Doctors";
+import CheckMessages from "./Pages/CheckMessages";
 
 function App() {
   return (
@@ -31,7 +31,7 @@ function App() {
             <Route path="doctors" element={<Doctors/>}/>
             <Route path="checkAppointments" element={<SeeAppointments/>}/>
             <Route path="addDoctors" element={<AddDoctors/>}/>
-            <Route path="messages" element={<Messages/>}/>
+            <Route path="messages" element={<CheckMessages/>}/>
           </Route>
         </Route>       
         </Routes>

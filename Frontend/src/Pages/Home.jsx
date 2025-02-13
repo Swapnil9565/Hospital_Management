@@ -9,6 +9,7 @@ import DepartmentInfo from '../Components/DepartmentInfo';
 import ServicesInfo from '../Components/ServicesInfo';
 import Footer from '../Components/Footer';
 import { ToastContainer,toast } from 'react-toastify';
+import Message from '../Components/Message';
 
 function Home() {
   let navigate=useNavigate();
@@ -55,6 +56,7 @@ function Home() {
     <Staff staffRef={staffRef}/>
     <DepartmentInfo/>
     <ServicesInfo/>
+    <Message/>
     <Footer/>
     </>
   )

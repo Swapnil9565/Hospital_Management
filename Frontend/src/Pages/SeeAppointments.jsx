@@ -31,7 +31,7 @@ const SeeAppointments = () => {
 
   return (
     <div>
-      <div className="h-[90vh] border-2 border-black m-5 rounded-md">
+      <div className="h-[80vh] border-2 border-black m-5 rounded-md overflow-y-scroll">
         <h1 className="font-bold text-2xl text-green-900 uppercase m-5">
           All Patients
         </h1>
@@ -53,10 +53,10 @@ const SeeAppointments = () => {
               </tr>
             </thead>
             <tbody>
-              {appointments ? (
+              {appointments>0 ? (
                 appointments.map((appointment, index) => (
                   <tr key={index} className="text-center px-8 odd:bg-blue-200">
-                    <td>{appointment._id}</td>
+                    <td>{index+1}</td>
                     <td>{appointment.fName}</td>
                     <td>{appointment.lName}</td>
                     <td>{appointment.gender}</td>
