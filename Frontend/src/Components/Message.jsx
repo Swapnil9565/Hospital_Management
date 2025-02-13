@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 const Message = () => {
    const [formData,setFormData]=useState({
-    full_name:"",
+    name:"",
     email:"",
     contact:"",
-    feedback:""
+    message:""
    });
 
    const handleChange=(e)=>{
-      const [name,value]=e.target;
+      const {name,value}=e.target;
       setFormData({...formData,[name]:value});
    }
 
@@ -17,11 +17,14 @@ const Message = () => {
          e.preventDefault();
          try {
           const res=await axios.post("https://hospital-management-99yz.onrender.com/api/user/message",formData,{
+            headers:{
             "Content-Type":"application/json",
             "Authorization":localStorage.getItem("token")
+          }
           })
+          console.log(res.data); 
           if(res.status===200){
-            console.log(res.data);
+
             return alert("Message submitted successfully")
           }
          } catch (error) {
@@ -43,9 +46,9 @@ const Message = () => {
             <input
               type="text"
               name="name"
-              value={formData.full_name}
+              value={formData.name}
               placeholder="Full Name"
-              onchange={handleChange}
+              onChange={handleChange}
               className="w-full p-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
             <input
@@ -53,7 +56,7 @@ const Message = () => {
               name="email"
               value={formData.email}
               placeholder="Email"
-              onchange={handleChange}
+              onChange={handleChange}
               className="w-full p-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
             <input
@@ -61,7 +64,7 @@ const Message = () => {
               name="contact"
               value={formData.contact}
               placeholder="Contact No"
-              onchange={handleChange}
+              onChange={handleChange}
               className="w-full p-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
@@ -69,9 +72,9 @@ const Message = () => {
             <textarea
               name="message"
               rows="7"
-              value={formData.feedback}
+              value={formData.message}
               placeholder="Leave your feedback..."
-              onchange={handleChange}
+              onChange={handleChange}
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
             ></textarea>
           </div>
