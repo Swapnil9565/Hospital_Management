@@ -4,13 +4,13 @@ import Home from "./Pages/Home";
 import Appointment from "./Pages/Appointment";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
-import Admin from "./Pages/Admin"
+import Admin from "./Pages/Admin/Admin"
 import ProtectedRoute from "./Components/ProtectedRoute";
-import Dashboard from "./Pages/Dashboard";
-import AddDoctors from "./Pages/AddDoctors";
-import SeeAppointments from "./Pages/SeeAppointments";
-import Doctors from "./Pages/Doctors";
-import CheckMessages from "./Pages/CheckMessages";
+import Dashboard from "./Pages/Admin/Dashboard";
+import AddDoctors from "./Pages/Admin/AddDoctors";
+import SeeAppointments from "./Pages/Admin/CheckAppointments";
+import Doctors from "./Pages/Admin/Doctors";
+import CheckMessages from "./Pages/Admin/CheckMessages";
 
 function App() {
   return (
