@@ -24,8 +24,10 @@ const Message = () => {
           })
           console.log(res.data); 
           if(res.status===200){
-
             return alert("Message submitted successfully")
+          }
+          if(res.status===400){
+            return alert(res.data.message);
           }
          } catch (error) {
            alert(error);
