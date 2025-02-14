@@ -52,7 +52,7 @@ const SeeAppointments = () => {
               </tr>
             </thead>
             <tbody>
-              {appointments>0 ? (
+              {appointments.length>0 ? (
                 appointments.map((appointment, index) => (
                   <tr key={index} className="text-center px-8 odd:bg-blue-200">
                     <td>{index+1}</td>

@@ -59,6 +59,17 @@ const Message = () => {
           progress: undefined,
         });
       }
+      if(error.response.status===401){
+        return toast.error("Access denied..!Please Log in to continue", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
       console.log(error);
     }
   };
