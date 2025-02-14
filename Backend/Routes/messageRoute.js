@@ -6,6 +6,11 @@ const MessageModel = require("../models/MessageModel");
 router.post("/message",authMiddleware,async(req,res)=>{
     const {name,email,contact,message}=req.body;
     try {
+         const existingMsg=await MessageModel.findOne({email});
+         if(existingMsg){
+            return res.status(400).json({message:"Message already sent using this email"})
+         }
+
         const createdMsg=await MessageModel.create({
             name,
             email,
