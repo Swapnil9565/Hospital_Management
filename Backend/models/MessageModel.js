@@ -1,7 +1,7 @@
 const mongoose=require("mongoose");
 
 const messageSchema=new mongoose.Schema({
-  full_name:{
+  name:{
     type:String,
     required:true
   },
@@ -14,7 +14,7 @@ const messageSchema=new mongoose.Schema({
     type:String,
     required:true
   },
-  feedback:{
+  message:{
     type:String,
     required:true
   },

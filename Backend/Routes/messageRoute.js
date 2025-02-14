@@ -4,13 +4,13 @@ const authMiddleware=require("../middlewares/authMiddleware");
 const MessageModel = require("../models/MessageModel");
 
 router.post("/message",authMiddleware,async(req,res)=>{
-    const {full_name,email,contact,feedback}=req.body;
+    const {name,email,contact,message}=req.body;
     try {
         const createdMsg=await MessageModel.create({
-            full_name,
+            name,
             email,
             contact,
-            feedback
+            message
         });
         await createdMsg.save();
         res.status(200).json({message:"Message send Successfully",createdMsg});
