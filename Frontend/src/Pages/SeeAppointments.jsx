@@ -17,8 +17,7 @@ const SeeAppointments = () => {
             },
           }
         );
-        console.log(res.data);
-        setAppointments(res.data.appointments);
+               setAppointments(res.data.appointments);
       } catch (error) {
         console.error("Error fetching appointments:", error);
       } finally {
