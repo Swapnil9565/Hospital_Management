@@ -31,8 +31,7 @@ router.post("/appointment", authMiddleware, async (req, res) => {
 router.get("/checkAppointments",authMiddleware, async (_, res) => {
   try {
       const appointments = await appointmentModel.find();
-      console.log(appointments);
-     
+           
       if (appointments.length > 0) {
           return res.status(200).json({ message: "Appointments", appointments });
       } else {

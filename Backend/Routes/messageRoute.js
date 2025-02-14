@@ -26,4 +26,16 @@ router.post("/message",authMiddleware,async(req,res)=>{
 
 })
 
+router.get("/checkMessages",authMiddleware,async(_,res)=>{
+    try {
+        const messages=await MessageModel.find();
+        if(messages.length>0){
+            return res.status(200).json({message:"Messages fetched successfully",messages})
+        }
+        res.status(404).json({message:"No messages yet..!"});
+    } catch (error) {
+        console.log(error);
+        alert(error);
+    }
+})
 module.exports = router;
