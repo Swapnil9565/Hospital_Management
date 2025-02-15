@@ -11,6 +11,7 @@ import AddDoctors from "./Pages/Admin/AddDoctors";
 import SeeAppointments from "./Pages/Admin/CheckAppointments";
 import CheckMessages from "./Pages/Admin/CheckMessages";
 import CheckDoctors from "./Pages/Admin/CheckDoctors";
+import User from "./Pages/Admin/User";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/admin" element={<Admin />}>
             <Route path="dashboard" element={<Dashboard/>}/>
             <Route path="doctors" element={<CheckDoctors/>}/>
+            <Route path="allUsers" element={<User/>}/>
             <Route path="checkAppointments" element={<SeeAppointments/>}/>
             <Route path="addDoctors" element={<AddDoctors/>}/>
             <Route path="messages" element={<CheckMessages/>}/>

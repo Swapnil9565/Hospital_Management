@@ -1,6 +1,7 @@
 const express=require("express");
 const router=express.Router();
 const doctorsModel=require("../models/doctorsModel");
+const userModel=require("../models/userModel");
 const upload=require("../Config/CloudinaryConfig")
 
 router.post("/addDoctor", upload.single("photo"), async (req, res) => {
@@ -41,5 +42,18 @@ router.get("/fetchDoctors",async(_,res)=>{
     res.status(500).json({message:"Something went wrong while fetching doctors"})
   }
  
+})
+
+
+router.get("/fetchUsers",async(req,res)=>{
+  try {
+    const users=await userModel.find();
+    if(!users){
+      res.status(404).json({message:"Users not found"});
+    }
+    res.status(200).json({message:"Users fetched successfully",users});
+  } catch (error) {
+     res.status(500).json({message:"Something went wrong while fetching users"});
+  }
 })
 module.exports=router;
