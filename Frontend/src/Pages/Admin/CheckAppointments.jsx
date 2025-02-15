@@ -30,7 +30,7 @@ const SeeAppointments = () => {
 
   return (
     <div>
-      <div className="h-[80vh] border-2 border-black m-5 rounded-md overflow-y-scroll scrollbar-thin scrollbar-thumb-indigo-500 scrollbar-track-blue-100">
+      <div className="h-[80vh] border-2 border-black m-5 rounded-md overflow-y-scroll">
         <h1 className="font-bold text-2xl text-green-900 uppercase m-5">
           All Patients
         </h1>
