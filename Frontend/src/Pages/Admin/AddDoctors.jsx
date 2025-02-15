@@ -24,7 +24,7 @@ export default function AddDoctor() {
     e.preventDefault();
     const data = new FormData();
     data.append("photo", formData.photo);
-    data.append("docName", formData.name);
+    data.append("docName", formData.docName);
     data.append("specialization", formData.specialization);
     data.append("city", formData.city);
     data.append("gender", formData.gender);
@@ -32,11 +32,11 @@ export default function AddDoctor() {
     try {
       const res = await axios.post(
         "https://hospital-management-99yz.onrender.com/api/admin/addDoctor",
-        formData,
+        data,
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: localStorage.getItem("token"),
+            "Authorization": localStorage.getItem("token"),
           },
         }
       );
