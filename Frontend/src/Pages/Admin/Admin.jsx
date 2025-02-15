@@ -1,6 +1,6 @@
 import React from "react"
-import Sidebar from "../../Components/Sidebar"
-import Topbar from '../../Components/Topbar'
+import Sidebar from "../../Components/Admin/Sidebar"
+import Topbar from '../../Components/Admin/Topbar'
 import { Outlet } from 'react-router-dom'
 
 const Admin = () => {

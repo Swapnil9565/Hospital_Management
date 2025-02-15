@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import adminAvatar from "../Assets/admin-avatar.png"
+import adminAvatar from "../../Assets/admin-avatar.png"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faCalendarCheck, faHouse, faMessage,  faUserDoctor, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
