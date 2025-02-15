@@ -30,10 +30,7 @@ export default function AddDoctor() {
     data.append("gender", formData.gender);
     data.append("contact", formData.contact);
     try {
-      const res = await axios.post(
-        "https://hospital-management-99yz.onrender.com/api/admin/addDoctor",
-        data,
-        {
+      const res = await axios.post("https://hospital-management-99yz.onrender.com/api/admin/addDoctor",data,{
           headers: {
             "Content-Type": "multipart/form-data",
           }
