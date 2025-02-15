@@ -4,8 +4,7 @@ const doctorsModel = require("../models/doctorsModel");
 const upload = require("../Config/MulterConfig");
 
 router.post("/addDoctor", upload.single("photo"), async (req, res) => {
-  console.log('Request Body:', req.body);
-  console.log('File Info:', req.file);
+
   try {
     const {docName, specialization, city, gender, contact } = req.body;
     console.log(req.file);
@@ -14,16 +13,17 @@ router.post("/addDoctor", upload.single("photo"), async (req, res) => {
     }
 
     const photoPath = req.file.path;
-    const doctor = await doctorsModel.create({
+    const newDoctor=new Doctor({
       photo:photoPath,
       docName,
       specialization,
       city,
       gender,
-      contact,
-    });
+      contact
+    })
+    await newDoctor.save();
 
-    res.status(200).json({ message: "Doctor added successfully", doctor });
+    res.status(200).json({ message: "Doctor added successfully", newDoctor });
   } catch (error) {
     console.error("Error adding doctor:", error.message);
     res.status(500).json({ error: "Failed to add doctor", details: error.message });

@@ -35,8 +35,8 @@ export default function AddDoctor() {
         data,
         {
           headers: {
-            "Content-Type": "multipart/form-data"
-          },
+            "Content-Type": "multipart/form-data",
+          }
         }
       );
       if (res.status === 200) {
