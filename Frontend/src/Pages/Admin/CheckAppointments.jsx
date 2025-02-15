@@ -9,7 +9,7 @@ const SeeAppointments = () => {
     const fetchAppointments = async () => {
       try {
         const res = await axios.get(
-          "https://hospital-management-99yz.onrender.com/api/user/checkAppointments",
+          "https://hospital-management-99yz.onrender.com/api/user/fetchAppointments",
           {
             headers: {
               "Content-Type": "application/json",

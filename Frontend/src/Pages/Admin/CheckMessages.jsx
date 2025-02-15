@@ -7,7 +7,7 @@ const CheckMessages = () => {
   useEffect(()=>{
     const  fetchMessages=async()=>{
      try {
-       const res=await axios.get("https://hospital-management-99yz.onrender.com/api/user/checkMessages",{
+       const res=await axios.get("https://hospital-management-99yz.onrender.com/api/admin/fetchMessages",{
          headers:{
            "Content-Type":"application/json",
            "Authorization":localStorage.getItem("token")
@@ -44,7 +44,7 @@ const CheckMessages = () => {
               </tr>
             </thead>
             <tbody>
-              {messages.length>0 ? (
+              {messages?.length>0 ? (
                 messages.map((message, index) => (
                   <tr key={index} className="text-center px-8 odd:bg-blue-200">
                     <td>{index+1}</td>

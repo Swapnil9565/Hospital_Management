@@ -41,9 +41,11 @@ const User = () => {
         <table className="w-full border-collapse mt-10">
           <thead>
             <tr className="px-8 text-center">
+                <th>Sr No.</th>
               <th>User Id</th>
               <th>Username</th>
               <th>Email</th>
+              <th>Role</th>
              </tr>
           </thead>
           <tbody>
@@ -51,9 +53,10 @@ const User = () => {
               users.map((user, index) => (
                 <tr key={index} className="text-center px-8 odd:bg-blue-200">
                   <td>{index+1}</td>
-                  {/* <td>{}</td> */}
+                  <td>{user._id}</td>
                   <td>{user.username}</td>
                   <td>{user.email}</td>
+                  <td>{user.role}</td>
                 
                 </tr>
               ))
