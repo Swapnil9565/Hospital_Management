@@ -24,7 +24,7 @@ app.use(cors());
 app.use("/api/auth",authRouter);
 app.use("/api/user",appoRouter);
 app.use("/api/user",messageRouter);
-app.use("api/admin",doctorRouter);
+app.use("/api/admin",doctorRouter);
 
 app.use(express.static(path.join(_dirname,"/Frontend/dist")));
 app.get("*",(req,res)=>{

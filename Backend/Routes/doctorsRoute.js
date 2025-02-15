@@ -5,7 +5,7 @@ const upload=require("../Config/MulterConfig");
 router.post("/addDoctor",upload.single("photo"), async (req, res) => {
   try {
     const {docName, specialization, city, gender, contact}= req.body;
-    const photo=req.file?`/uploads/doctors/${req.file.filename}`:null;
+    const photo=req.file?`./uploads/doctors/${req.file.filename}`:null;
     const doctor = await doctorsModel.create({
       photo,
       docName,
