@@ -17,7 +17,7 @@ export default function AddDoctor() {
   };
 
   const handleFileChange = (e) => {
-    setFormData({ ...formData, photo: e.target.files[0] });
+      setFormData({ ...formData, photo: e.target.files[0] });
   };
 
   const handleSubmit = async (e) => {
@@ -35,8 +35,7 @@ export default function AddDoctor() {
         data,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
-            "Authorization": localStorage.getItem("token"),
+            "Content-Type": "multipart/form-data"
           },
         }
       );
