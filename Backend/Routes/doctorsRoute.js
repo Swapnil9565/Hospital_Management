@@ -4,6 +4,8 @@ const doctorsModel = require("../models/doctorsModel");
 const upload = require("../Config/MulterConfig");
 
 router.post("/addDoctor", upload.single("photo"), async (req, res) => {
+  console.log('Request Body:', req.body);
+  console.log('File Info:', req.file);
   try {
     const {docName, specialization, city, gender, contact } = req.body;
     console.log(req.file);
@@ -11,10 +13,9 @@ router.post("/addDoctor", upload.single("photo"), async (req, res) => {
       return res.status(400).json({ error: "Photo is required" });
     }
 
-    const photo = req.file.path;
-     console.log(photo);
+    const photoPath = req.file.path;
     const doctor = await doctorsModel.create({
-      photo,
+      photo:photoPath,
       docName,
       specialization,
       city,
