@@ -64,6 +64,7 @@ export default function AddDoctor() {
             <label className='block font-medium'>Upload Photo</label>
             <input
               type='file'
+              name="photo"
               accept='image/*'
               onChange={handleFileChange}
               className='mt-1 w-full border rounded-lg p-1'
