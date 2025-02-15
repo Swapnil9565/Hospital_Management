@@ -28,4 +28,18 @@ router.post("/addDoctor", upload.single("photo"), async (req, res) => {
     res.status(500).json({ error: "Failed to add doctor", details: error.message });
   }
 });
+
+router.get("/fetchDoctors",async(_,res)=>{
+  try {
+    const doctors=await doctorsModel.find();
+    if(!doctors){
+      res.status(404).json({message:"Doctors not found"});
+    }
+    res.status(200).json({message:"Doctors fetched successfully",doctors});
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({message:"Something went wrong while fetching doctors"})
+  }
+ 
+})
 module.exports=router;

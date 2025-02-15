@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 export default function AddDoctor() {
-  
-    const [formData, setFormData] = useState({
-      photo: null,
-      docName: "",
-      specialization: "",
-      city: "",
-      gender: "",
-      contact:""
-    })
+  const [formData, setFormData] = useState({
+    photo: null,
+    docName: "",
+    specialization: "",
+    city: "",
+    gender: "",
+    contact: "",
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,7 +17,7 @@ export default function AddDoctor() {
   };
 
   const handleFileChange = (e) => {
-      setFormData({ ...formData, photo: e.target.files[0] });
+    setFormData({ ...formData, photo: e.target.files[0] });
   };
 
   const handleSubmit = async (e) => {
@@ -30,20 +30,47 @@ export default function AddDoctor() {
     data.append("gender", formData.gender);
     data.append("contact", formData.contact);
     try {
-      const res = await axios.post("https://hospital-management-99yz.onrender.com/api/admin/addDoctor",data,{
+      const res = await axios.post(
+        "https://hospital-management-99yz.onrender.com/api/admin/addDoctor",
+        data,
+        {
           headers: {
             "Content-Type": "multipart/form-data",
-          }
+          },
         }
       );
       if (res.status === 200) {
-        alert(res.data.message);
+        toast.success(res.data.message, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setFormData({
+          photo: null,
+          docName: "",
+          specialization: "",
+          city: "",
+          gender: "",
+          contact: "",
+        });
       }
     } catch (error) {
-      alert(error);
+      toast.error("Something went wrong while adding doctors", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
- 
+
   return (
     <div
       className='h-[90vh] pt-5'
@@ -51,16 +78,20 @@ export default function AddDoctor() {
         background:
           "radial-gradient(circle, rgba(63,94,251,1) 0%, rgb(14, 222, 249) 100%)",
       }}>
+      <ToastContainer className='w-[25vw]' />
       <div className='max-w-lg mx-auto p-3 bg-white rounded-2xl shadow-lg'>
         <h2 className='text-2xl font-semibold text-center mb-4'>
           Add a New Doctor
         </h2>
-        <form onSubmit={handleSubmit} encType="multipart/form-data" className='space-y-4'>
+        <form
+          onSubmit={handleSubmit}
+          encType='multipart/form-data'
+          className='space-y-4'>
           <div>
             <label className='block font-medium'>Upload Photo</label>
             <input
               type='file'
-              name="photo"
+              name='photo'
               accept='image/*'
               onChange={handleFileChange}
               className='mt-1 w-full border rounded-lg p-1'

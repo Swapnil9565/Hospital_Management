@@ -9,8 +9,8 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 import Dashboard from "./Pages/Admin/Dashboard";
 import AddDoctors from "./Pages/Admin/AddDoctors";
 import SeeAppointments from "./Pages/Admin/CheckAppointments";
-import Doctors from "./Pages/Admin/Doctors";
 import CheckMessages from "./Pages/Admin/CheckMessages";
+import CheckDoctors from "./Pages/Admin/CheckDoctors";
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
         <Route element={<ProtectedRoute allowedRole="admin" />}>
           <Route path="/admin" element={<Admin />}>
             <Route path="dashboard" element={<Dashboard/>}/>
-            <Route path="doctors" element={<Doctors/>}/>
+            <Route path="checkDoctors" element={<CheckDoctors/>}/>
             <Route path="checkAppointments" element={<SeeAppointments/>}/>
             <Route path="addDoctors" element={<AddDoctors/>}/>
             <Route path="messages" element={<CheckMessages/>}/>
