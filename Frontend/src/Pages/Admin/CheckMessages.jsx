@@ -10,10 +10,8 @@ const CheckMessages = () => {
        const res=await axios.get("https://hospital-management-99yz.onrender.com/api/admin/fetchMessages",{
          headers:{
            "Content-Type":"application/json",
-           "Authorization":localStorage.getItem("token")
          }
         })
-        console.log(res.data);
         setMessages(res.data.messages);
      } catch (error) {
        console.error(error);

@@ -76,7 +76,7 @@ router.get("/fetchAppointments", async (_, res) => {
 router.get("/fetchMessages",async(_,res)=>{
   try {
     const messages=await MessageModel.find();
-    if(!users){
+    if(messages.length>0){
       res.status(404).json({message:"Messages not found"});
     }
     res.status(200).json({message:"Messages fetched successfully",messages});

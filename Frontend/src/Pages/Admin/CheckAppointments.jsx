@@ -9,7 +9,7 @@ const SeeAppointments = () => {
     const fetchAppointments = async () => {
       try {
         const res = await axios.get(
-          "https://hospital-management-99yz.onrender.com/api/user/fetchAppointments",
+          "https://hospital-management-99yz.onrender.com/api/admin/fetchAppointments",
           {
             headers: {
               "Content-Type": "application/json",
@@ -52,7 +52,7 @@ const SeeAppointments = () => {
               </tr>
             </thead>
             <tbody>
-              {appointments.length>0 ? (
+              {appointments?.length>0 ? (
                 appointments.map((appointment, index) => (
                   <tr key={index} className="text-center px-8 odd:bg-blue-200">
                     <td>{index+1}</td>
