@@ -24,14 +24,14 @@ const CheckDoctors = () => {
            
         }
         fetchDoctors();
-    })
+    },[])
 
 
   return (
     <div>
     <div className="h-[80vh] border-2 border-black m-5 rounded-md overflow-y-scroll">
       <h1 className="font-bold text-2xl text-green-900 uppercase m-5">
-        All Dcotors
+        All Doctors
       </h1>
 
       {loading ? (
@@ -65,7 +65,7 @@ const CheckDoctors = () => {
             ) : (
               <tr>
                 <td colSpan="8" className="text-center text-red-500">
-                  No Dcotors found.
+                  No Doctors found.
                 </td>
               </tr>
             )}
