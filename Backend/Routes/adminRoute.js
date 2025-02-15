@@ -58,7 +58,7 @@ router.get("/fetchUsers",async(req,res)=>{
      res.status(500).json({message:"Something went wrong while fetching users"});
   }
 })
-router.get("/fetchAppointments",authMiddleware, async (_, res) => {
+router.get("/fetchAppointments", async (_, res) => {
   try {
       const appointments = await appointmentModel.find();
            
