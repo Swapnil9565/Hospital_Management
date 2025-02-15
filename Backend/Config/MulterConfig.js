@@ -1,42 +1,31 @@
 const multer = require('multer');
 const path = require('path');
-const fs = require('fs');
 
-// Ensure the uploads directory exists
-const uploadDir = path.join(__dirname, '..', 'uploads', 'doctors');
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-}
-
-// Multer Storage Configuration
+// Set Storage Engine
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, uploadDir);
+  destination: function (req, file, cb) {
+    cb(null, './uploads/');
   },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-    cb(null, `${file.fieldname}-${uniqueSuffix}${path.extname(file.originalname)}`);
+  filename: function (req, file, cb) {
+    cb(null, `${Date.now()}-${file.originalname}`);
   }
 });
 
-// File Filter Configuration
+// File Filter (optional)
 const fileFilter = (req, file, cb) => {
-  const allowedTypes = /jpeg|jpg|png/;
-  const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
-  const mimeType = allowedTypes.test(file.mimetype);
-
-  if (extname && mimeType) {
+  const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+  if (allowedTypes.includes(file.mimetype)) {
     cb(null, true);
   } else {
-    cb(new Error('Invalid file type. Only JPEG, JPG, and PNG are allowed.'));
+    cb(new Error('Invalid file type'), false);
   }
 };
 
-// Initialize Multer
+// Initialize multer
 const upload = multer({
   storage: storage,
-  limits: { fileSize: 2 * 1024 * 1024 }, // 2MB limit
   fileFilter: fileFilter,
+  limits: { fileSize: 2 * 1024 * 1024 } // 2MB limit
 });
 
 module.exports = upload;
