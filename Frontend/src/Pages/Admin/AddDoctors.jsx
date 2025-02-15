@@ -47,7 +47,7 @@ export default function AddDoctor() {
       alert(error);
     }
   };
-
+ 
   return (
     <div
       className='h-[90vh] pt-5'
@@ -59,7 +59,7 @@ export default function AddDoctor() {
         <h2 className='text-2xl font-semibold text-center mb-4'>
           Add a New Doctor
         </h2>
-        <form onSubmit={handleSubmit} className='space-y-4'>
+        <form onSubmit={handleSubmit} encType="multipart/form-data" className='space-y-4'>
           <div>
             <label className='block font-medium'>Upload Photo</label>
             <input
