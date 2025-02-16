@@ -14,7 +14,6 @@ const User = () => {
                     }
                 })
                 if(res.status===200){
-                    console.log(res.data); 
                     setUsers(res.data.users);
                 }
             } catch (error) {

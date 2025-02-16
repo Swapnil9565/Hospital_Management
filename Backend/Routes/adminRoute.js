@@ -13,8 +13,7 @@ router.post("/addDoctor", upload.single("photo"), async (req, res) => {
     if (!req.file) {
       return res.status(400).json({ error: "Photo is required" });
     }
-
-    const photoUrl = req.file.path;
+      const photoUrl = req.file.path;
 
     const doctor = await doctorsModel.create({
       photo: photoUrl,
@@ -49,7 +48,8 @@ router.get("/fetchDoctors",async(_,res)=>{
 
 router.get("/fetchUsers",async(req,res)=>{
   try {
-    const users=await userModel.find();
+    const users=await userModel.find({ role: "user" });
+   
     if(!users){
       res.status(404).json({message:"Users not found"});
     }

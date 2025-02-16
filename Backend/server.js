@@ -16,7 +16,11 @@ const _dirname=path.resolve();
 //middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:5173', 'https://hospital-management-99yz.onrender.com'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  }));
 
 //Routes
 app.use("/api/auth",authRouter);
