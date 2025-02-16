@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import PaginationComponent from '../../Components/Admin/PaginationComponent';
 const SeeAppointments = () => {
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
+  
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -28,9 +31,17 @@ const SeeAppointments = () => {
     fetchAppointments();
   }, []);
 
+  const lastRowIndex = currentPage * rowsPerPage;
+  const firstRowIndex = lastRowIndex - rowsPerPage;
+  const currentRows = appointments.slice(firstRowIndex, lastRowIndex);
+  
+  const handlePageChange=(e,page)=>{
+    setCurrentPage(page);
+}
+
   return (
     <div>
-      <div className="h-[80vh] border-2 border-black m-5 rounded-md overflow-y-scroll">
+      <div className="h-[83vh] border-2 border-black m-5 rounded-md">
         <h1 className="font-bold text-2xl text-green-900 uppercase m-5">
           All Patients
         </h1>
@@ -38,7 +49,7 @@ const SeeAppointments = () => {
         {loading ? (
           <p className="text-center text-lg text-blue-600">Fetching Appointments...</p>
         ) : (
-          <table className="w-full border-collapse mt-10">
+          <table className="w-full border-collapse mt-10 border-separate border-spacing-y-3">
             <thead>
               <tr className="px-8 text-center">
                 <th>Patient ID</th>
@@ -53,9 +64,9 @@ const SeeAppointments = () => {
             </thead>
             <tbody>
               {appointments?.length>0 ? (
-                appointments.map((appointment, index) => (
+                currentRows.map((appointment, index) => (
                   <tr key={index} className="text-center px-8 odd:bg-blue-200">
-                    <td>{index+1}</td>
+                    <td>{firstRowIndex +index+1}</td>
                     <td>{appointment.fName}</td>
                     <td>{appointment.lName}</td>
                     <td>{appointment.gender}</td>
@@ -75,6 +86,7 @@ const SeeAppointments = () => {
             </tbody>
           </table>
         )}
+      <PaginationComponent totalItems={appointments.length} currentPage={currentPage} rowsPerPage={rowsPerPage} onPageChange={handlePageChange}/>
       </div>
     </div>
   );
