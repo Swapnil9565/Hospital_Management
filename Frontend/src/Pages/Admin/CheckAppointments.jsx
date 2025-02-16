@@ -36,7 +36,7 @@ const SeeAppointments = () => {
         </h1>
 
         {loading ? (
-          <p className="text-center text-lg text-blue-600">Loading...</p>
+          <p className="text-center text-lg text-blue-600">Fetching Appointments...</p>
         ) : (
           <table className="w-full border-collapse mt-10">
             <thead>

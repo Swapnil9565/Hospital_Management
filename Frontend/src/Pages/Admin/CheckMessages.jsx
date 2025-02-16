@@ -49,7 +49,7 @@ const CheckMessages = () => {
                     <td>{message.name}</td>
                     <td>{message.email}</td>
                     <td>{message.contact}</td>
-                    <td className='word-break'>{message.message}</td>
+                    <td>{message.message}</td>
                   </tr>
                 ))
               ) : (

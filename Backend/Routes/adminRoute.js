@@ -2,7 +2,7 @@ const express=require("express");
 const router=express.Router();
 const doctorsModel=require("../models/doctorsModel");
 const userModel=require("../models/userModel");
-const MessageModel = require("../models/MessageModel");
+const messageModel = require("../models/MessageModel");
 const appointmentModel=require("../models/appointmentModel")
 const upload=require("../Config/CloudinaryConfig")
 
@@ -73,11 +73,11 @@ router.get("/fetchAppointments", async (_, res) => {
   }
 });
 
-router.get("/fetchMessages",async(_,res)=>{
+router.get("/fetchMessages",async (_, res)=>{
   try {
-    const messages=await MessageModel.find();
-    if(messages.length>0){
-      res.status(404).json({message:"Messages not found"});
+    const messages=await messageModel.find();
+    if(!messages){
+      return res.status(404).json({message:"Messages not found"});
     }
     res.status(200).json({message:"Messages fetched successfully",messages});
   } catch (error) {
