@@ -39,17 +39,17 @@ const Footer = () => {
       <div className="mb-6 text-start">
         <h3 className="text-cyan-400 text-lg uppercase mb-2">Newsletter</h3>
         <p className="text-white">Subscribe to our newsletter for updates.</p>
-        <form className="mt-5 flex items-center  justify-center gap-5">
+        <form className="mt-2 md:mt-5 flex items-center  justify-center gap-2 md:gap-5">
           <input
             type="email"
             name="email"
             placeholder="Your Email"
             required
-            className="w-3/4 text-center p-2"
+            className="w-3/4 text-center p-1 md:p-2"
           />
           <button
             type="submit"
-            className="p-2 bg-cyan-400 rounded-lg hover:bg-cyan-500 cursor-pointer">
+            className="p-1 md:p-2 bg-cyan-400 rounded-lg hover:bg-cyan-500 cursor-pointer">
             Subscribe
           </button>
         </form>
@@ -58,16 +58,16 @@ const Footer = () => {
         <h3 className="text-cyan-400 text-lg uppercase mb-2">Follow Us</h3>
         <div className="flex space-x-4">
          
-          <a  href='#' className="text-white bg-cyan-400 rounded-full p-3 hover:text-black">
+          <a  href='#' className="text-white bg-cyan-400 rounded-full p-2 md:p-3 hover:text-black">
           <FontAwesomeIcon icon={faFacebook}/>
           </a>
-          <a href='#' className="text-white bg-cyan-400 rounded-full p-3 hover:text-black">
+          <a href='#' className="text-white bg-cyan-400 rounded-full p-2 md:p-3 hover:text-black">
             <FontAwesomeIcon icon={faTwitter}/>
           </a>
-          <a href='#' className="text-white bg-cyan-400 rounded-full p-3 hover:text-black">
+          <a href='#' className="text-white bg-cyan-400 rounded-full p-2 md:p-3 hover:text-black">
               <FontAwesomeIcon icon={faInstagram}/>
           </a>
-          <a href='#' className="text-white bg-cyan-400 rounded-full p-3 hover:text-black">
+          <a href='#' className="text-white bg-cyan-400 rounded-full p-2 md:p-3 hover:text-black">
           <FontAwesomeIcon icon={faLinkedin}/>
           </a>
         </div>

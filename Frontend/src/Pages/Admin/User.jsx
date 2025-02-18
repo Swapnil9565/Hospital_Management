@@ -1,4 +1,6 @@
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faTrash } from "@fortawesome/free-solid-svg-icons"
 import React, { useEffect, useState } from "react";
 import PaginationComponent from "../../Components/Admin/PaginationComponent";
 const User = () => {
@@ -54,6 +56,7 @@ const User = () => {
                 <th>User Id</th>
                 <th>Username</th>
                 <th>Email</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -64,6 +67,7 @@ const User = () => {
                     <td>{user._id}</td>
                     <td>{user.username}</td>
                     <td>{user.email}</td>
+                    <td className="cursor-pointer"><FontAwesomeIcon icon={faTrash} color="red"/></td>
                   </tr>
                 ))
               ) : (

@@ -80,25 +80,25 @@ const Register = () => {
           "linear-gradient(155deg, rgba(2,0,36,1) 0%, rgb(2, 45, 66) 37%, rgba(0,212,255,1) 100%)",
       }}
       className='h-screen text-white'>
-      <ToastContainer className='w-[25vw]' />
+      <ToastContainer className='mt-10 ml-10 md:mt-2 md:ml-0 w-[60vw] md:w-[25vw]' />
       <FontAwesomeIcon
         icon={faArrowLeft}
-        className='text-bold m-5 text-xl cursor-pointer'
+        className='text-bold m-5 text-md md:text-xl cursor-pointer'
         onClick={() => navigate("/")}
       />
-      <h1 className='text-center text-blue-300 font-bold text-4xl pt-10'>
+      <h1 className='text-center text-blue-300 font-bold text-3xl md:text-4xl pt-5 md:pt-10'>
         MedZone
       </h1>
       <div className='flex h-[70vh] justify-center items-center'>
-        <div className='w-full max-w-md bg-transparent rounded-lg shadow-2xl  p-6'>
-          <h2 className='text-2xl font-bold text-center'>Sign Up</h2>
+        <div className='w-full max-w-md bg-transparent rounded-lg shadow-2xl p-3 md:p-6'>
+          <h2 className='text-xl md:text-2xl font-normal md:font-bold text-center'>Sign Up</h2>
           <form className='mt-6 space-y-' onSubmit={handleRegister}>
           <div>
-              <label htmlFor='role' className='block text-sm font-medium'>
+              <label htmlFor='role' className='block text-sm md:text-lg'>
                 Register As
               </label>
               <div className='flex my-2'>
-                <label className='flex items-center mx-1'>
+                <label className='flex items-center mx-1 text-sm md:text-lg'>
                   <input
                     type='radio'
                     name='role'
@@ -109,7 +109,7 @@ const Register = () => {
                   User
                 </label>
 
-                <label className='flex items-center mx-1'>
+                <label className='flex items-center mx-1 text-sm md:text-lg'>
                   <input
                     type='radio'
                     name='role'
@@ -123,7 +123,7 @@ const Register = () => {
             </div>
             {registerData.role === "admin" ? (
               <div>
-                <label htmlFor='username' className='block text-sm font-medium'>
+                <label htmlFor='username' className='block text-sm md:text-lg font-medium'>
                   Secret Key
                 </label>
                 <input
@@ -132,14 +132,14 @@ const Register = () => {
                   name='secretKey'
                   placeholder='Enter Secret key'
                   onChange={(e) => setSecretKey(e.target.value)}
-                  className='text-black my-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm'
+                  className='placeholder:text-sm md:placeholder:text-base text-black my-2 block w-full px-2 py-1 md:px-4 md:py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm md:text-lg'
                 />
               </div>
             ) : (
               <></>
             )}
             <div>
-              <label htmlFor='username' className='block text-sm font-medium'>
+              <label htmlFor='username' className='block text-sm md:text-lg font-medium'>
                 Name
               </label>
               <input
@@ -149,12 +149,12 @@ const Register = () => {
                 value={registerData.username}
                 onChange={handleChange}
                 placeholder='Enter your name'
-                className='text-black my-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm'
+                className='placeholder:text-sm md:placeholder:text-base text-black my-2 block w-full px-2 py-1 md:px-4 md:py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm md:text-lg'
               />
             </div>
 
             <div>
-              <label htmlFor='email' className='block text-sm font-medium'>
+              <label htmlFor='email' className='block text-sm md:text-lg font-medium'>
                 Email
               </label>
               <input
@@ -164,12 +164,12 @@ const Register = () => {
                 value={registerData.email}
                 onChange={handleChange}
                 placeholder='Enter your email'
-                className='text-black my-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm'
+                className='placeholder:text-sm md:placeholder:text-base text-black my-2 block w-full px-2 py-1 md:px-4 md:py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm md:text-lg'
               />
             </div>
 
             <div>
-              <label htmlFor='password' className='block text-sm font-medium'>
+              <label htmlFor='password' className='block text-sm md:text-lg font-medium'>
                 Password
               </label>
               <input
@@ -179,17 +179,17 @@ const Register = () => {
                 value={registerData.password}
                 onChange={handleChange}
                 placeholder='Enter your password'
-                className='text-black my-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm'
+                className='placeholder:text-sm md:placeholder:text-base text-black my-2 block w-full px-2 py-1 md:px-4 md:py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm md:text-lg'
               />
             </div>
             <button
               type='submit'
-              className='w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'>
+              className='w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-1 px-2 text-sm md:text-lg md:py-2 py-1 px-2 md:px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'>
               Sign Up
             </button>
-            <p className='text-center my-2'>
+            <p className='text-center text-sm md:text-lg my-2'>
               Already have an account?{" "}
-              <Link to='/login' className='text-blue-300 font-semibold'>
+              <Link to='/login' className='text-blue-300 text-sm md:text-lg font-semibold'>
                 Login Now
               </Link>{" "}
             </p>

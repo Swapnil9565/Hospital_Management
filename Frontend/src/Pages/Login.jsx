@@ -66,42 +66,42 @@ const Login = () => {
 
   return (
     <div style={{ background: 'linear-gradient(155deg, rgba(2,0,36,1) 0%, rgb(2, 45, 66) 37%, rgba(0,212,255,1) 100%)' }} className='h-screen text-white'>
-    <ToastContainer className='w-[25vw]' />
+    <ToastContainer className='mt-10 ml-10 md:mt-2 md:ml-0 w-[60vw] md:w-[25vw]' />
     <FontAwesomeIcon icon={faArrowLeft} className='text-bold m-5 text-xl cursor-pointer' onClick={()=>navigate("/")}/>
-    <h1 className='text-center text-blue-300 font-bold text-4xl pt-10'>MedZone</h1>
-    <div className='flex h-[70vh] justify-center items-center'>
-    <div className="w-full max-w-md bg-transparent rounded-lg shadow-2xl  p-6">
-    <h2 className="text-2xl font-bold text-center">Log In</h2>
+    <h1 className='text-center text-blue-300 font-bold text-3xl md:text-4xl pt-5 md:pt-10'>MedZone</h1>
+    <div className='flex h-[60vh] md:h-[70vh] justify-center items-center'>
+    <div className="w-full max-w-md bg-transparent rounded-lg shadow-2xl p-4 md:p-6">
+    <h2 className="text-xl md:text-2xl font-normal md:font-bold text-center">Log In</h2>
     <form className="mt-6 space-y-" onSubmit={handleLogin}>
       <div>
-        <label htmlFor="email" className="block text-sm font-medium">Email</label>
+        <label htmlFor="email" className="block text-sm md:text-lg font-medium">Email</label>
         <input 
           type="email" 
           id="email" 
           name="email"
           value={loginData.email} onChange={handleChange} 
           placeholder="Enter your email"
-          className="my-2 block w-full px-4 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          className="placeholder:text-sm md:placeholder:text-base my-2 block w-full px-2 py-1 md:px-4 md:py-2 text-black border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm md:text-lg"
         />
       </div>
 
       <div>
-        <label htmlFor="password" className="block text-sm font-medium">Password</label>
+        <label htmlFor="password" className="block text-sm md:text-lg font-medium">Password</label>
         <input 
           type="password" 
           id="password" 
           name="password"
           value={loginData.password} onChange={handleChange} 
           placeholder="Enter your password"
-          className="my-2 block w-full px-4 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          className="placeholder:text-sm md:placeholder:text-base my-2 block w-full px-2 py-1 md:px-4 md:py-2 text-black border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm md:text-lg"
         />
       </div>
       <button 
         type="submit" 
-        className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium  px-2 py-2 md:px-4 text-sm md:text-lg rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
         Log In
       </button>
-      <p className='text-center my-2'>Don't have an account? <Link to="/register" className="text-blue-300 font-semibold">Sign Up Now </Link> </p>
+      <p className='text-center text-sm md:text-lg my-2'>Don't have an account? <Link to="/register" className="text-blue-300 font-semibold text-sm md:text-lg ">Sign Up Now </Link> </p>
       
     </form>
   </div>      

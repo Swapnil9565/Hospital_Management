@@ -1,0 +1,19 @@
+
+@media (max-width: 640px) {
+    .Toastify__toast {
+      font-size: 14px !important;
+      padding: 4px 8px !important;
+      text-align: center;
+    }
+  
+    .Toastify__toast-body {
+      font-size: 14px !important;
+      text-align: center;
+    }
+  
+    .Toastify__close-button {
+      width: 18px !important;
+      height: 14px !important;
+    }
+  }
+  

@@ -57,137 +57,128 @@ function Appointment() {
   };
 
   return (
-    <div className='h-screen' style={{background:`url(${appintmentBg})`, backgroundSize:"cover",backgroundRepeat:"no-repeat"}}>
-      <ToastContainer className='w-[25vw]' />
+    <div className='h-[200vh] md:h-screen bg-[#EBF3FF]'>
+      <ToastContainer className='w-[80vw] mt-10 md:w-[25vw]' />
       <button
         onClick={() => navigate("/")}
-        className='py-2 px-1 text-md font-medium bg-blue-300 rounded-md float-right m-3 hover:bg-blue-400'>
-        <FontAwesomeIcon icon={faArrowLeft} className='mx-3' />
+        className='py-2 px-4 text-sm md:text-md font-medium bg-blue-300 rounded-md float-right m-3 hover:bg-blue-400'>
+        <FontAwesomeIcon icon={faArrowLeft} className='mx-2 md:mx-3' />
         Back to HomePage
       </button>
-      <div className='mx-auto w-3/4 h-[80vh] flex items-center justify-center'>
-        <div>
+      <div className='mx-0 px-5 md:px-0 md:mx-4 md:mx-auto w-full md:w-3/4 h-auto md:h-screen flex flex-col md:flex-row items-center justify-center gap-6'>
+        <div className='w-full md:w-1/2 flex justify-center'>
           <img
             src={appointmentImg}
-            alt=''
-            width={400}
-            className='aspect-square rounded-lg'
+            alt='Appointment'
+            className='w-full max-w-xs md:max-w-sm aspect-square rounded-lg'
           />
         </div>
-        <div className='py-4 px-2'>
-          <form onSubmit={handleSubmit}>
-            <h1 className='text-center text-black font-bold uppercase text-xl'>
+        <div className='w-full md:w-1/2 px-1 py-2 md:py-4 md:px-2'>
+          <form onSubmit={handleSubmit} className='space-y-4'>
+            <h1 className='text-center text-black font-bold uppercase text-lg md:text-xl mb-4'>
               Book An Appointment
             </h1>
-            <input
-              type='text'
-              name='fName'
-              className='py-2 px-1 border-2 border-gray rounded-md mr-4 outline-blue-400'
-              placeholder='First Name'
-              value={patientInfo.fName}
-              onChange={handleChange}
-            />
-
-            <input
-              type='text'
-              name='lName'
-              className='py-2 px-1 border-2 border-gray rounded-md my-4 outline-blue-400'
-              placeholder='Last Name'
-              value={patientInfo.lName}
-              onChange={handleChange}
-            />
-            <br />
+            <div className='flex flex-col md:flex-row gap-4'>
+              <input
+                type='text'
+                name='fName'
+                className='flex-1 p-2 border-2 border-gray-300 rounded-md outline-blue-400'
+                placeholder='First Name'
+                value={patientInfo.fName}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type='text'
+                name='lName'
+                className='flex-1 p-2 border-2 border-gray-300 rounded-md outline-blue-400'
+                placeholder='Last Name'
+                value={patientInfo.lName}
+                onChange={handleChange}
+                required
+              />
+            </div>
             <input
               type='email'
               name='email'
-              className='w-full py-2 px-1 border-2 border-gray rounded-md  outline-blue-400'
+              className='w-full p-2 border-2 border-gray-300 rounded-md outline-blue-400'
               placeholder='Email Address'
               value={patientInfo.email}
-              required
               onChange={handleChange}
+              required
             />
-            <br />
             <input
               type='tel'
               name='mobile'
-              className='w-full py-2 px-1 border-2 border-gray rounded-md my-3 outline-blue-400 '
+              className='w-full p-2 border-2 border-gray-300 rounded-md outline-blue-400'
+              placeholder='Mobile Number'
               value={patientInfo.mobile}
-              placeholder='Mobile number'
               onChange={handleChange}
               required
             />
-            <br />
-            <div className='py-3 flex items-center justify-between '>
-              <label htmlFor='Gender' className='text-slate-600 font-bold text-lg'>
-                Gender:
-              </label>
-              <div className='rounded-md px-5 py-2  flex justify-center bg-white items-center gap-5 mx-5'>
-                <div>
-                <label htmlFor='Male'>Male</label>
-                </div>
-                <div>
-                  <input type='radio' name='gender' id='Male' value="Male" onChange={handleChange} />
-                </div>
-              </div>
-              <div className='rounded-md px-5 py-2 flex justify-between bg-white items-center gap-5 mx-5'>
-                <div>
-                  <label htmlFor='Female'>Female</label>
-                </div>
-                <div>
-                  <input type='radio' name='gender' id='Female' value="Female" onChange={handleChange}/>
-                </div>
+            <div className='flex flex-col md:flex-row gap-4 md:items-center'>
+              <label className='text-slate-600 font-bold text-lg'>Gender:</label>
+              <div className='flex gap-4'>
+                <label className='flex items-center gap-2'>
+                  <input type='radio' name='gender' value='Male' onChange={handleChange} required />
+                  Male
+                </label>
+                <label className='flex items-center gap-2'>
+                  <input type='radio' name='gender' value='Female' onChange={handleChange} required />
+                  Female
+                </label>
               </div>
             </div>
             <select
-              className='py-2 px-1 border-2 border-gray rounded-md outline-blue-400 w-48'
+              className='w-full p-2 border-2 border-gray-300 rounded-md outline-blue-400'
               value={patientInfo.department}
               name='department'
-              onChange={handleChange}>
-              <option value='Select Department'>Select Department</option>
+              onChange={handleChange}
+              required
+            >
+              <option value=''>Select Department</option>
               <option value='Cardiology'>Cardiology</option>
               <option value='Orthopedic'>Orthopedic</option>
-              <option value='Gynacology'>Gynacology</option>
+              <option value='Gynecology'>Gynecology</option>
               <option value='Dermatology'>Dermatology</option>
               <option value='Pediatrics'>Pediatrics</option>
               <option value='Neurology'>Neurology</option>
             </select>
-            <br />
-            <label htmlFor='Date' className='text-slate-600 font-bold'>
-              Confirm Date: <br />
-              <input
-                type='date'
-                name='date'
-                id='Date'
-                min={new Date().toISOString().split("T")[0]}
-                value={patientInfo.date}
-                onChange={handleChange}
-                onFocus={(e) => e.target.showPicker()}
-                className='text-black font-normal py-2 mr-4 px-1 border-2 border-gray rounded-md  outline-blue-400 '
-              />
-            </label>
-            <br />
-            <label htmlFor='Time' className='text-slate-600 font-bold'>
-              Confirm Time: <br />
-              <input
-                type='time'
-                name='time'
-                id='Time'
-                value={patientInfo.time}
-                onChange={handleChange}
-                onFocus={(e) => e.target.showPicker()}
-                className='text-black font-normal py-2 px-1 border-2 border-gray rounded-md mb-4 outline-blue-400 '
-              />
-            </label>
-            <br />
-            <input
+            <div className='flex flex-col md:flex-row gap-4'>
+              <div className='flex-1'>
+                <label className='text-slate-600 font-bold'>Confirm Date:</label>
+                <input
+                  type='date'
+                  name='date'
+                  min={new Date().toISOString().split("T")[0]}
+                  value={patientInfo.date}
+                  onChange={handleChange}
+                  className='w-full p-2 border-2 border-gray-300 rounded-md outline-blue-400'
+                  required
+                />
+              </div>
+              <div className='flex-1'>
+                <label className='text-slate-600 font-bold'>Confirm Time:</label>
+                <input
+                  type='time'
+                  name='time'
+                  value={patientInfo.time}
+                  onChange={handleChange}
+                  className='w-full p-2 border-2 border-gray-300 rounded-md outline-blue-400'
+                  required
+                />
+              </div>
+            </div>
+            <button
               type='submit'
-              value='Appointment Now'
-              className='cursor-pointer w-full bg-green-300 rounded-sm py-2 text-center font-bold outline-blue-400'
-            />
+              className='w-full bg-green-400 hover:bg-green-500 text-white font-bold py-3 rounded-md'>
+              Book Appointment
+            </button>
           </form>
         </div>
       </div>
     </div>
+
   );
 }
 

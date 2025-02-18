@@ -1,12 +1,15 @@
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
 import PaginationComponent from '../../Components/Admin/PaginationComponent';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 const CheckDoctors = () => {
     const [loading,setLoading]=useState(true);
     const [doctors,setDoctors]=useState([]);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [rowsPerPage, setRowsPerPage] = useState(5);
    
     useEffect(()=>{
         const fetchDoctors=async()=>{
@@ -40,9 +43,12 @@ const CheckDoctors = () => {
   return (
     <div>
     <div className="h-[83vh] border-2 border-black m-5 rounded-md">
-      <h1 className="font-bold text-2xl text-green-900 uppercase m-5">
+      <div className="flex justify-between items-center m-5">
+      <h1 className="font-bold text-2xl text-green-900 uppercase">
         All Doctors
       </h1>
+      <button className="py-2 px-3 font-semibold tracking-wide bg-blue-900 text-white rounded-md "><Link to="/admin/addDoctors" className='flex items-center gap-2'><FontAwesomeIcon icon={faPlus}/> Add New</Link></button>
+      </div>
 
       {loading ? (
         <p className="text-center text-lg text-blue-600">Fetching Doctors...</p>
