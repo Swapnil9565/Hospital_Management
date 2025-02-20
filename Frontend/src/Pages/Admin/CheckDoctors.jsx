@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
 import PaginationComponent from '../../Components/Admin/PaginationComponent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
+import EditDoctorModal from '../../Components/Admin/EditDoctorModal';
 const CheckDoctors = () => {
     const [loading,setLoading]=useState(true);
     const [doctors,setDoctors]=useState([]);
+    const [isOpenEditModal,setIsOpenEditModal]=useState(false);
 
     const [currentPage, setCurrentPage] = useState(1);
     const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -39,9 +41,21 @@ const CheckDoctors = () => {
     const handlePageChange=(e,page)=>{
       setCurrentPage(page);
   }
-
+ 
+  const handleEdit=async(e)=>{
+    console.log("Click on edit");
+    e.stopPropagation();
+    setIsOpenEditModal(true);
+  //  const res=await axios.put("https://hospital-management-99yz.onrender.com/api/admin/editDoctor",{
+  //   headers:{
+  //     "Content-Type":"application/json",
+  //     "Authorization":localStorage.getItem("token")
+  //   }
+  //  })
+   
+  }
   return (
-    <div>
+   
     <div className="h-[83vh] border-2 border-black m-5 rounded-md">
       <div className="flex justify-between items-center m-5">
       <h1 className="font-bold text-2xl text-green-900 uppercase">
@@ -63,6 +77,7 @@ const CheckDoctors = () => {
               <th>City</th>
               <th>Gender</th>
               <th>Contact</th>
+              <th>Actions</th>
              </tr>
           </thead>
           <tbody>
@@ -76,6 +91,7 @@ const CheckDoctors = () => {
                   <td>{doctor.city}</td>
                   <td>{doctor.gender}</td>
                   <td>{doctor.contact}</td>
+                  <td className='pt-2 flex items-center gap-5 justify-center'><FontAwesomeIcon icon={faEdit} color='green' className='cursor-pointer' onClick={(e)=>handleEdit(e)}/><FontAwesomeIcon icon={faTrash} color='red' className='cursor-pointer'/></td>
                 </tr>
               ))
             ) : (
@@ -88,9 +104,12 @@ const CheckDoctors = () => {
           </tbody>
         </table>
       )}
-     <PaginationComponent totalItems={doctors.length} currentPage={currentPage} rowsPerPage={rowsPerPage} onPageChange={handlePageChange}/>
+     <PaginationComponent totalItems={doctors.length} currentPage={currentPage} rowsPerPage={rowsPerPage} onPageChange={handlePageChange} className="relative"/>
+       <div className='absolute top-[15%] left-1/2 transform-translate(-1/2,-1/2)'>
+      {isOpenEditModal&&<EditDoctorModal setIsOpenEditModal={setIsOpenEditModal}/>}
+      </div>
      </div>
-  </div>
+
   )
 }
 
