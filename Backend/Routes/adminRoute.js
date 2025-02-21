@@ -109,11 +109,11 @@ router.get("/fetchMessages", async (_, res) => {
 
 router.put("/editDoctor/:doctorId", async (req, res) => {
   const { doctorId } = req.params;
-  const { photoUrl, docName, specialization, city, gender, contact } = req.body;
+  const { photo, docName, specialization, city, gender, contact } = req.body;
 try {
   const updatedDoctor = await doctorsModel.findByIdAndUpdate(
     doctorId,
-    { photoUrl, docName, specialization, city, gender, contact },
+    { photo, docName, specialization, city, gender, contact },
     { new: true, runValidators: true }
   );
 
@@ -125,7 +125,19 @@ try {
   console.log(error);
     res.status(500).json({ message: "Something went wrong while updating dcotor" });
 }
-
-
 });
+
+router.delete("/deleteDoctor/:doctorId",async(req,res)=>{
+     const {doctorId}=req.params;
+try {
+  const deletedDoctor=await doctorsModel.deleteOne(doctorId);
+  if(!deletedDoctor){
+   return res.status(400).json({message:"Doctors not found"});
+  }
+  res.status(200).json({message:"Doctor Deleted successfully",deletedDoctor});
+} catch (error) {
+  return res.status(500).json({message:"Something went wrong while deleting doctor"})
+}
+
+})
 module.exports = router;

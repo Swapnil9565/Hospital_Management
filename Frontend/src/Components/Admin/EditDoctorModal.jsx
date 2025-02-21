@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMultiply } from "@fortawesome/free-solid-svg-icons";
 
 export default function EditDoctorModal({ setIsOpenEditModal,doctorId }) {
   const [formData, setFormData] = useState({
     photo: null,
+    photoPreview: "",
     docName: "",
     specialization: "",
     city: "",
@@ -19,7 +22,14 @@ export default function EditDoctorModal({ setIsOpenEditModal,doctorId }) {
   };
 
   const handleFileChange = (e) => {
-    setFormData({ ...formData, photo: e.target.files[0] });
+    const file = e.target.files[0];
+    if (file) {
+      setFormData({
+        ...formData,
+        photo: file,
+        photoPreview: URL.createObjectURL(file), 
+      });
+    }
   };
    useEffect(()=>{
      const fetchDoctorData = async () => {
@@ -35,7 +45,7 @@ export default function EditDoctorModal({ setIsOpenEditModal,doctorId }) {
             );
           console.log(res);
             if (res.status === 200) {
-              const { docName, specialization, city, gender, contact } = res.data;
+              const { docName, specialization, city, gender, contact } = res.data.doctorData;
               setFormData((prev) => ({
                 ...prev,
                 docName,
@@ -50,7 +60,8 @@ export default function EditDoctorModal({ setIsOpenEditModal,doctorId }) {
           }
         };
         fetchDoctorData();  
-   },[])
+   },[doctorId])
+   
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     if (!doctorId) {
@@ -59,7 +70,7 @@ export default function EditDoctorModal({ setIsOpenEditModal,doctorId }) {
     }
     try {
       const data = new FormData();
-      data.append("photo", formData.photo);
+      
       data.append("docName", formData.docName);
       data.append("specialization", formData.specialization);
       data.append("city", formData.city);
@@ -72,18 +83,33 @@ export default function EditDoctorModal({ setIsOpenEditModal,doctorId }) {
         data,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: localStorage.getItem("token"),
+            "Content-Type": "application/json"
           },
         }
       );
 
       if (res.status === 200) {
-        alert(res.data.message);
         setIsOpenEditModal(false);
+        toast.success(res.data.message, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       }
     } catch (error) {
-      alert("Something went wrong while updating the doctor.");
+      toast.error("Something Went wrong", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
@@ -102,7 +128,10 @@ export default function EditDoctorModal({ setIsOpenEditModal,doctorId }) {
       <form onSubmit={handleEditSubmit} encType="multipart/form-data" className="space-y-4">
         <div>
           <label className="block font-medium">Upload Photo</label>
-          <input type="file" name="photo" accept="image/*" onChange={handleFileChange} className="mt-1 w-full border rounded-lg p-1" />
+          {formData.photoPreview && (
+            <img src={formData.photoPreview} alt="Doctor Preview" className="w-12 h-12 object-cover rounded-lg mb-2" />
+          )}
+          <input type="file" name="photo" accept="image/*"  onChange={handleFileChange} className="mt-1 w-full border rounded-lg p-1" />
         </div>
         <div>
           <label className="block font-medium">Doctor Name</label>
