@@ -130,8 +130,8 @@ try {
 router.delete("/deleteDoctor/:doctorId",async(req,res)=>{
      const {doctorId}=req.params;
 try {
-  const deletedDoctor=await doctorsModel.deleteOne(doctorId);
-  if(!deletedDoctor){
+  const deletedDoctor=await doctorsModel.deleteOne({ _id: doctorId });
+  if(deletedDoctor.deletedCount===0){
    return res.status(400).json({message:"Doctors not found"});
   }
   res.status(200).json({message:"Doctor Deleted successfully",deletedDoctor});
