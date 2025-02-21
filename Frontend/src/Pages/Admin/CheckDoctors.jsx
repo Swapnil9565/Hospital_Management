@@ -46,13 +46,7 @@ const CheckDoctors = () => {
   const handleEdit=async(doctorId)=>{
     setSelectedDoctor(doctorId);
     setIsOpenEditModal(true);
-   const res=await axios.put(`https://hospital-management-99yz.onrender.com/api/admin/editDoctor/${doctorId}`,{
-    headers:{
-      "Content-Type":"application/json",
-      "Authorization":localStorage.getItem("token")
-    }
-   })
-   
+ 
   }
   return (
    
@@ -106,7 +100,7 @@ const CheckDoctors = () => {
       )}
      <PaginationComponent totalItems={doctors.length} currentPage={currentPage} rowsPerPage={rowsPerPage} onPageChange={handlePageChange} className="relative"/>
        <div className='absolute top-[15%] left-1/2 transform-translate(-1/2,-1/2)'>
-      {isOpenEditModal&&<EditDoctorModal setIsOpenEditModal={setIsOpenEditModal} selectedDoctor={selectedDoctor}/>}
+      {isOpenEditModal&&<EditDoctorModal setIsOpenEditModal={setIsOpenEditModal} doctorId={selectedDoctor}/>}
       </div>
      </div>
 

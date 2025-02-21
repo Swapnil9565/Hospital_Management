@@ -13,41 +13,6 @@ export default function EditDoctorModal({ setIsOpenEditModal,doctorId }) {
     contact: "",
   });
 
-  useEffect(() => {
-    const fetchDoctorData = async () => {
-      if(!doctorId) return
-      try {
-        const res = await axios.get(
-          `https://hospital-management-99yz.onrender.com/api/admin/fetchDoctorById${doctorId}`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: localStorage.getItem("token"),
-            },
-          }
-        );
-
-        if (res.status === 200) {
-          const { docName, specialization, city, gender, contact } = res.data.doctorData;
-          setFormData((prev) => ({
-            ...prev,
-            docName,
-            specialization,
-            city,
-            gender,
-            contact,
-          }));
-        }
-      } catch (error) {
-        console.error("Error fetching doctor data:", error);
-      }
-    };
-
-   
-      fetchDoctorData();
-    
-  }, [doctorId]);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -56,7 +21,36 @@ export default function EditDoctorModal({ setIsOpenEditModal,doctorId }) {
   const handleFileChange = (e) => {
     setFormData({ ...formData, photo: e.target.files[0] });
   };
-
+   useEffect(()=>{
+     const fetchDoctorData = async () => {
+          if(!doctorId) return
+          try {
+            const res = await axios.get(
+              `https://hospital-management-99yz.onrender.com/api/admin/fetchDoctorById/${doctorId}`,
+              {
+                headers: {
+                  "Content-Type": "application/json"
+                },
+              }
+            );
+          console.log(res);
+            if (res.status === 200) {
+              const { docName, specialization, city, gender, contact } = res.data;
+              setFormData((prev) => ({
+                ...prev,
+                docName,
+                specialization,
+                city,
+                gender,
+                contact,
+              }));
+            }
+          } catch (error) {
+            console.error("Error fetching doctor data:", error);
+          }
+        };
+        fetchDoctorData();  
+   },[])
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     if (!doctorId) {
@@ -74,7 +68,7 @@ export default function EditDoctorModal({ setIsOpenEditModal,doctorId }) {
       data.append("doctorId", doctorId);
 
       const res = await axios.put(
-        "https://hospital-management-99yz.onrender.com/api/admin/editDoctor",
+        `https://hospital-management-99yz.onrender.com/api/admin/editDoctor/${doctorId}`,
         data,
         {
           headers: {

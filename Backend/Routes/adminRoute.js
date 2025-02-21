@@ -48,9 +48,10 @@ router.get("/fetchDoctors", async (_, res) => {
       .json({ message: "Something went wrong while fetching doctors" });
   }
 });
-router.get("/fetchDoctorById/:doctorId",authMiddleware,async(req,res)=>{
+router.get("/fetchDoctorById/:doctorId",async(req,res)=>{
   try {
-    const doctorData = await doctorsModel.findById( req.params.doctorId);
+    const {doctorId}=req.params;
+    const doctorData = await doctorsModel.findById(doctorId);
     if (!doctorData) {
       return res.status(404).json({ message: "doctorData not found" });
     }
@@ -61,7 +62,7 @@ router.get("/fetchDoctorById/:doctorId",authMiddleware,async(req,res)=>{
       .json({ message: "something went wrong while fetching doctor data" });
   }
 })
-router.get("/fetchUsers", async (req, res) => {
+router.get("/fetchUsers", async (_, res) => {
   try {
     const users = await userModel.find({ role: "user" });
 
