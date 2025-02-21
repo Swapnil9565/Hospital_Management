@@ -50,7 +50,7 @@ router.get("/fetchDoctors", async (_, res) => {
 });
 router.get("/fetchDoctorById",authMiddleware,async(req,res)=>{
   try {
-    const doctorData = await doctorsModel.findById(req.user.id);
+    const doctorData = await doctorsModel.findById( req.user.id);
     if (!doctorData) {
       return res.status(404).json({ message: "doctorData not found" });
     }

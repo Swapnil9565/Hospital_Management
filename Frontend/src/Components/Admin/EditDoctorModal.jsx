@@ -20,7 +20,10 @@ const res=await axios.get("https://hospital-management-99yz.onrender.com/api/adm
      }
      })
      console.log(res.data);
-     setFormData(res.data.doctorData);
+     if(res.status===200){
+       const {docName,specialization,city,gender,contact}=res.data.doctorData;
+      setFormData({docName,specialization,city,gender,contact});
+     }
   }
   fetchDoctorData();
   const handleChange = (e) => {
@@ -81,7 +84,7 @@ const res=await axios.get("https://hospital-management-99yz.onrender.com/api/adm
 
   return (
  
-      <div className='max-w-lg mx-auto p-3 bg-slate-800 text-white rounded-2xl shadow-lg'>
+      <div className='max-w-lg mx-auto p-3 bg-white rounded-2xl shadow-lg'>
         <div className="flex items-center justify-between mb-4">
         <h2 className='text-2xl font-semibold text-center'>
           Edit a Doctor
