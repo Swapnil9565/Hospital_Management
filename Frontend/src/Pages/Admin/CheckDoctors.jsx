@@ -8,6 +8,7 @@ import EditDoctorModal from '../../Components/Admin/EditDoctorModal';
 const CheckDoctors = () => {
     const [loading,setLoading]=useState(true);
     const [doctors,setDoctors]=useState([]);
+    const [selectedDoctor,setSelectedDoctor]=useState(null);
     const [isOpenEditModal,setIsOpenEditModal]=useState(false);
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -42,16 +43,15 @@ const CheckDoctors = () => {
       setCurrentPage(page);
   }
  
-  const handleEdit=async(e)=>{
-    console.log("Click on edit");
-    e.stopPropagation();
+  const handleEdit=async(doctorId)=>{
+    setSelectedDoctor(doctorId);
     setIsOpenEditModal(true);
-  //  const res=await axios.put("https://hospital-management-99yz.onrender.com/api/admin/editDoctor",{
-  //   headers:{
-  //     "Content-Type":"application/json",
-  //     "Authorization":localStorage.getItem("token")
-  //   }
-  //  })
+   const res=await axios.put(`https://hospital-management-99yz.onrender.com/api/admin/editDoctor/${doctorId}`,{
+    headers:{
+      "Content-Type":"application/json",
+      "Authorization":localStorage.getItem("token")
+    }
+   })
    
   }
   return (
@@ -91,7 +91,7 @@ const CheckDoctors = () => {
                   <td>{doctor.city}</td>
                   <td>{doctor.gender}</td>
                   <td>{doctor.contact}</td>
-                  <td className='pt-2 flex items-center gap-5 justify-center'><FontAwesomeIcon icon={faEdit} color='green' className='cursor-pointer' onClick={(e)=>handleEdit(e)}/><FontAwesomeIcon icon={faTrash} color='red' className='cursor-pointer'/></td>
+                  <td className='pt-2 flex items-center gap-5 justify-center'><FontAwesomeIcon icon={faEdit} color='green' className='cursor-pointer' onClick={()=>handleEdit(doctor._id)}/><FontAwesomeIcon icon={faTrash} color='red' className='cursor-pointer'/></td>
                 </tr>
               ))
             ) : (
@@ -106,7 +106,7 @@ const CheckDoctors = () => {
       )}
      <PaginationComponent totalItems={doctors.length} currentPage={currentPage} rowsPerPage={rowsPerPage} onPageChange={handlePageChange} className="relative"/>
        <div className='absolute top-[15%] left-1/2 transform-translate(-1/2,-1/2)'>
-      {isOpenEditModal&&<EditDoctorModal setIsOpenEditModal={setIsOpenEditModal}/>}
+      {isOpenEditModal&&<EditDoctorModal setIsOpenEditModal={setIsOpenEditModal} selectedDoctor={selectedDoctor}/>}
       </div>
      </div>
 

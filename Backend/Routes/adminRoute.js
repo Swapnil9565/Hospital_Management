@@ -48,9 +48,9 @@ router.get("/fetchDoctors", async (_, res) => {
       .json({ message: "Something went wrong while fetching doctors" });
   }
 });
-router.get("/fetchDoctorById",authMiddleware,async(req,res)=>{
+router.get("/fetchDoctorById/:doctorId",authMiddleware,async(req,res)=>{
   try {
-    const doctorData = await doctorsModel.findById( req.user.id);
+    const doctorData = await doctorsModel.findById( req.params.doctorId);
     if (!doctorData) {
       return res.status(404).json({ message: "doctorData not found" });
     }
@@ -106,11 +106,12 @@ router.get("/fetchMessages", async (_, res) => {
   }
 });
 
-router.put("/editDoctor", async (req, res) => {
+router.put("/editDoctor/:doctorId", async (req, res) => {
+  const { doctorId } = req.params;
   const { photoUrl, docName, specialization, city, gender, contact } = req.body;
 try {
   const updatedDoctor = await doctorsModel.findByIdAndUpdate(
-    req.user.id,
+    doctorId,
     { photoUrl, docName, specialization, city, gender, contact },
     { new: true, runValidators: true }
   );
