@@ -36,7 +36,7 @@ const CheckDoctors = () => {
            
         }
         fetchDoctors();
-    },[isOpenEditModal])
+    },[isOpenEditModal,isOpenDeletePopup])
    
     const lastRowIndex = currentPage * rowsPerPage;
     const firstRowIndex = lastRowIndex - rowsPerPage;

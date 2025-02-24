@@ -2,24 +2,23 @@ import React, { useRef,useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import heroImg from "../Assets/heroBg.jpeg"
-import Navbar from "../Components/Navbar";
 import About from '../Components/About';
 import Staff from '../Components/Staff';
 import DepartmentInfo from '../Components/DepartmentInfo';
 import ServicesInfo from '../Components/ServicesInfo';
 import Footer from '../Components/Footer';
-import { ToastContainer,toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import Message from '../Components/Admin/Message';
 
-function Home() {
+function Home({isLoggedIn}) {
   let navigate=useNavigate();
-
-  const [isLoggedIn,setIsLoggedIn]=useState(false);
+ 
 
   const staffRef=useRef(null);
   const scrollToStaff=()=>{
     staffRef.current.scrollIntoView({ behavior: 'smooth' });
   }
+
   const handleAppointment=()=>{
     if(isLoggedIn){
       navigate("/appointment")
@@ -40,7 +39,6 @@ function Home() {
   return (
     <>
     <div className='h-screen'>
-    <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
     <div className="h-[40vh] md:h-[90vh]" style={{background:`url(${heroImg})`,backgroundPosition:"right top",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}>  
     <div className="flex flex-col justify-center h-[45vh] md:h-[70vh] px-3">
       <h1 className='underline text-lg md:text-4xl py-3 md:py-5 text-blue-800 font-bold'>Welcome to MedZone</h1>

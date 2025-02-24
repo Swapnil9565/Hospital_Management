@@ -165,6 +165,8 @@ function Appointment() {
                   value={patientInfo.time}
                   onChange={handleChange}
                   className='w-full p-2 border-2 border-gray-300 rounded-md outline-blue-400'
+                  min="09:00"
+                  max="21:00"
                   required
                 />
               </div>

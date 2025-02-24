@@ -4,6 +4,7 @@ const authMiddleware = require("../middlewares/authMiddleware");
 const appointmentModel = require("../models/appointmentModel");
 const MessageModel = require("../models/MessageModel");
 const moment=require("moment");
+const userModel = require("../models/userModel");
 
 //Appointments post api
 router.post("/appointment", authMiddleware, async (req, res) => {
@@ -53,5 +54,20 @@ router.post("/message",authMiddleware,async(req,res)=>{
         res.status(500).json({ error: 'Failed to send message' });
     }
 
+})
+
+router.delete("/deleteAccount/:userId",authMiddleware,async(req,res)=>{
+  try {
+    const user=req.user;
+    const {userId}=req.params;
+    const deletedUser=await userModel.deleteOne({_id:userId})
+    if(!user){
+      return res.status(400).json({message:"User not found"});
+    }
+    res.status(200).json({message:"user deleted successfully",deletedUser})
+  } catch (error) {
+    res.status(500).json({message:"Internal server error"});
+  }
+ 
 })
 module.exports = router;
