@@ -58,7 +58,7 @@ router.post("/message",authMiddleware,async(req,res)=>{
 router.get("/fetchBooking/:userId",async(req,res)=>{
   try {
     const {userId}=req.params;
-    const myBookings=await appointmentModel.find({userId:userId});
+    const myBookings=await appointmentModel.find({userId});
     if(!fetchBooking){
       return res.status(404).json({message:"Bookings not found"});
     }
