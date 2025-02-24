@@ -47,7 +47,7 @@ const UserDashboard = ({setIsLoggedIn}) => {
       } 
 
       const handleDeleteAccount=async()=>{
-        const res=await axios.delete(`https://hospital-management-99yz.onrender.com/api/user/deleteUser/${userData?._id}`,{
+        const res=await axios.delete(`https://hospital-management-99yz.onrender.com/api/user/deleteAccount/${userData?._id}`,{
           headers:{
             "Content-Type":"application/json",
             "Authorization":localStorage.getItem("token")
