@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-
+import { ToastContainer,toast } from 'react-toastify';
+import "react-toastify"
 const MyBooking = () => {
   const [userData,setUserData]=useState({});
   const [bookingData,setBookingData]=useState({});
@@ -9,7 +10,7 @@ const MyBooking = () => {
     setUserData(JSON.parse(data));
     const fetchBookings=async()=>{
       try {
-        const res=await axios.get(`https://hospital-management-99yz.onrender.com/api/user/fetchBooking/${userData._id}`,{
+        const res=await axios.get(`https://hospital-management-99yz.onrender.com/api/user/fetchBooking/${userData?._id}`,{
           headers:{
             "Content-Type":"application/json"
           }
