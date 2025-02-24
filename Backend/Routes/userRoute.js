@@ -55,6 +55,19 @@ router.post("/message",authMiddleware,async(req,res)=>{
     }
 
 })
+router.get("/fetchBooking/:userId",async(req,res)=>{
+  try {
+    const {userId}=req.params;
+    const myBookings=await appointmentModel.findById(userId);
+    if(!fetchBooking){
+      return res.status(404).json({message:"Bookings not found"});
+    }
+    res.status(200).json({message:"Bookings fetched successfully",myBookings})
+  } catch (error) {
+    res.status(500).json({message:"internal Server error"})
+  }
+
+})
 
 router.delete("/deleteAccount/:userId",authMiddleware,async(req,res)=>{
   try {

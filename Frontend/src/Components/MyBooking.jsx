@@ -1,8 +1,45 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 
 const MyBooking = () => {
+  const [userData,setUserData]=useState({});
+  const [bookingData,setBookingData]=useState({});
+  useEffect(()=>{
+    const data=localStorage.getItem("user");
+    setUserData(JSON.parse(data));
+    const fetchBookings=async()=>{
+      try {
+        const res=await axios.get(`https://hospital-management-99yz.onrender.com/api/user/fetchBooking/${userData._id}`,{
+          headers:{
+            "Content-Type":"application/json"
+          }
+        })
+        if(res.status===200){
+          setBookingData(res.data.myBookings);
+        }
+      } catch (error) {
+          toast.error("Something went wrong while fetching bookings", {
+                        position: "top-center",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                      });
+      } 
+    }
+
+    fetchBookings();
+  },[])
+  console.log(bookingData);
   return (
-    <div>MyBooking</div>
+    <div>
+       <ToastContainer className='mt-10 w-[25vw]' />
+      <div>
+        MyBookings
+      </div>
+
+    </div>
   )
 }
 

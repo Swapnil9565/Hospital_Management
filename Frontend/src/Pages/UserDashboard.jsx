@@ -12,8 +12,6 @@ const UserDashboard = ({setIsLoggedIn}) => {
     const [userData,setUserData]=useState({});
     const [displaySection,setDisplaySection]=useState("MyBooking");
 
-    const data=localStorage.getItem("user");
-
     const getInitials = (name) => {
         if (!name) return ""
 
@@ -25,6 +23,7 @@ const UserDashboard = ({setIsLoggedIn}) => {
           }
       };
     useEffect(()=>{
+        const data=localStorage.getItem("user");
         setUserData(JSON.parse(data));
     },[]);
 
@@ -32,8 +31,10 @@ const UserDashboard = ({setIsLoggedIn}) => {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
         localStorage.removeItem("role");
-        setIsLoggedIn(false);
-        navigate("/login")
+        setTimeout(() => {
+          navigate("/login");
+          setIsLoggedIn(false);
+        }, 1500);
         return toast.success("Logout successfully", {
                       position: "top-center",
                       autoClose: 3000,
@@ -45,34 +46,54 @@ const UserDashboard = ({setIsLoggedIn}) => {
                       
                     });
       } 
-
-      const handleDeleteAccount=async()=>{
-        const res=await axios.delete(`https://hospital-management-99yz.onrender.com/api/user/deleteAccount/${userData?._id}`,{
-          headers:{
-            "Content-Type":"application/json",
-            "Authorization":localStorage.getItem("token")
+       
+      const handleDeleteAccount = async () => {
+        try {
+          if (!userData?._id) {
+            return toast.error("User data is missing!", { position: "top-center" });
           }
-        })
-        if(res.status===200){
-          localStorage.removeItem("token");
-          localStorage.removeItem("user");
-          navigate("/register")
-          return  toast.success("Account deleted successfully", {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            
-          });
-        }
+      
+          const res = await axios.delete(
+            `https://hospital-management-99yz.onrender.com/api/user/deleteAccount/${userData._id}`,
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: localStorage.getItem("token"),
+              },
+            }
+          );
+      
+          if (res.status === 200) {
+            toast.success("Account deleted successfully", {
+              position: "top-center",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+            });
     
-      }
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            localStorage.removeItem("role");
+            
+            setTimeout(() => {
+              navigate("/register");
+              setIsLoggedIn(false);
+            }, 1500);
+          }
+        } catch (error) {
+          console.error("Error deleting account:", error);
+          toast.error(
+            error.response?.data?.message || "Failed to delete account. Try again.",
+            { position: "top-center" }
+          );
+        }
+      };
+      
   return (
   <div className='bg-[#F0F8FF] h-[89vh]'>
-  <ToastContainer className='mt-10 ml-10 md:mt-2 md:ml-0 w-[60vw] md:w-[25vw]' />
+  <ToastContainer className='mt-10 w-[25vw]' />
   <FontAwesomeIcon icon={faArrowLeft} size='xl' color='blue' className='cursor-pointer mx-[50px] my-4' onClick={()=>navigate("/")}/>
    <div className="flex justify-center pt-5">
     <div className="flex flex-col justify-between h-[70vh] px-10 shadow-md py-2 bg-white">
