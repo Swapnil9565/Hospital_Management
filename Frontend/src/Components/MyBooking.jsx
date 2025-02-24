@@ -5,9 +5,15 @@ import "react-toastify"
 const MyBooking = () => {
   const [userData,setUserData]=useState({});
   const [bookingData,setBookingData]=useState({});
+
+  useEffect(() => {
+    const data = localStorage.getItem("user");
+    if (data) {
+      setUserData(JSON.parse(data));
+    }
+  }, []);
+
   useEffect(()=>{
-    const data=localStorage.getItem("user");
-    setUserData(JSON.parse(data));
     const fetchBookings=async()=>{
       try {
         const res=await axios.get(`https://hospital-management-99yz.onrender.com/api/user/fetchBooking/${userData._id}`,{
