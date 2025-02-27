@@ -18,8 +18,8 @@ import UserDashboard from "./Pages/UserDashboard";
 
 function App() {
    const [isLoggedIn,setIsLoggedIn]=useState(false);
-  return (
-    <>
+   return (
+     <>
       <Router>
       <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
         <Routes>

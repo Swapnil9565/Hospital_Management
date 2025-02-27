@@ -110,15 +110,15 @@ const UserDashboard = ({setIsLoggedIn}) => {
       </div>
       <div className="flex flex-col gap-5 items-center">
         <button className="text-white bg-slate-900 py-2 w-52 rounded-md" onClick={handleLogout}>Log out</button>
-        <button className="bg-red-800 text-white py-2 w-52 rounded-md" onClick={handleDeleteAccount}>Delete Account</button>
+        <button className="bg-red-500 text-white py-2 w-52 rounded-md" onClick={handleDeleteAccount}>Delete Account</button>
       </div>
     </div>
     <div className="flex flex-col w-[40vw] h-[70vh] ml-10 p-4 bg-white">
       <div className="flex gap-5">
         <button className={`py-1 px-4 border-2 border-blue-200 rounded-md ${displaySection==="MyBooking"?"bg-blue-800 text-white border-none":"bg-white text-black"}`} onClick={()=>setDisplaySection("MyBooking")}>My Bookings</button>
-        <button className={`py-1 px-4 border-2 border-blue-200 rounded-md ${displaySection==="Setting"?"bg-blue-800 text-white bordeer-none":"bg-white text-black"}`} onClick={()=>setDisplaySection("Setting")}>Settings</button>
+        <button className={`py-1 px-4 border-2 border-blue-200 rounded-md ${displaySection==="Setting"?"bg-blue-800 text-white border-none":"bg-white text-black"}`} onClick={()=>setDisplaySection("Setting")}>Settings</button>
       </div>
-      <div className="mt-5">
+      <div className="mt-3 overflow-y-scroll scrollbar-thin">
         {displaySection==="MyBooking"?<MyBooking />:<Setting />} 
       </div>
     </div>
