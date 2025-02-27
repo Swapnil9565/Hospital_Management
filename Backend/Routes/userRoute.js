@@ -59,7 +59,7 @@ router.get("/fetchBooking/:userId",async(req,res)=>{
   try {
     const {userId}=req.params;
     const myBookings=await appointmentModel.find({userId});
-    if(!myBookings){
+    if(myBookings.length===0){
       return res.status(404).json({message:"Bookings not found"});
     }
     res.status(200).json({message:"Bookings fetched successfully",myBookings})
