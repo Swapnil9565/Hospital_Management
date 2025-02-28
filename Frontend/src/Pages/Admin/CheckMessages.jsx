@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PaginationComponent from "../../Components/Admin/PaginationComponent";
+import CheckMsgSkeleton from "./Skeletons/CheckMsgSkeleton";
 const CheckMessages = () => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -45,9 +46,7 @@ const CheckMessages = () => {
         </h1>
 
         {loading ? (
-          <p className='text-center text-lg text-blue-600'>
-            Fetching messages...
-          </p>
+          <CheckMsgSkeleton/>
         ) : (
           <table className='w-full border-collapse mt-10 border-separate border-spacing-y-3'>
             <thead>
@@ -80,8 +79,8 @@ const CheckMessages = () => {
             </tbody>
           </table>
         )}
-        
-        <PaginationComponent totalItems={messages.length} currentPage={currentPage} rowsPerPage={rowsPerPage} onPageChange={handlePageChange}/>
+     
+        <PaginationComponent totalItems={messages.length} currentPage={currentPage} rowsPerPage={rowsPerPage} onPageChange={handlePageChange}/> 
       </div>
     </div>
   );

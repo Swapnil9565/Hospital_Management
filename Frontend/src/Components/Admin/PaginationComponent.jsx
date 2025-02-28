@@ -5,7 +5,7 @@ const PaginationComponent = ({totalItems,currentPage,rowsPerPage,onPageChange}) 
   const totalPages=Math.ceil(totalItems/rowsPerPage);
 
   return (
-    <div className='flex justify-center mb-5 fixed bottom-5 left-100 transform -translate-x-100 w-[80vw]'>
+    <div className='flex justify-center mb-5 fixed left-100 bottom-5 transform -translate-x-100 w-[104vw]'>
           <Pagination color='primary' count={totalPages} page={currentPage} variant='outlined' shape='rounded' onChange={onPageChange} />
     </div>
   )

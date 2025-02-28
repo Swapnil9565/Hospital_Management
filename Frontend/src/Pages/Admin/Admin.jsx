@@ -7,7 +7,7 @@ const Admin = () => {
   return (
     <div className='flex w-full'>
       <Sidebar/>
-      <div>
+      <div className="w-[80vw]">
       <Topbar/>
       <Outlet/>
       </div>

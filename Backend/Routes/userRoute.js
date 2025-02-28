@@ -83,4 +83,17 @@ router.delete("/deleteAccount/:userId",authMiddleware,async(req,res)=>{
   }
  
 })
+
+router.delete("/cancelAppointment/:appoId",async(req,res)=>{
+  try {
+    const appointment=await appointmentModel.findOne({_id:req.params.appoId});
+    if(!appointment){
+      return res.status(404).json({message:"Appointment not found"});
+    }
+    res.status(200).json({message:"Appointment cancelled successfully",appointment});
+  } catch (error) {
+    return res.status(500).json({error:"Internal Server Error"});
+  }
+
+})
 module.exports = router;

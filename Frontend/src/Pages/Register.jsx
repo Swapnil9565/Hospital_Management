@@ -132,7 +132,7 @@ const Register = () => {
                   name='secretKey'
                   placeholder='Enter Secret key'
                   onChange={(e) => setSecretKey(e.target.value)}
-                  className='placeholder:text-sm md:placeholder:text-base text-black my-2 block w-full px-2 py-1 md:px-4 md:py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm md:text-lg'
+                  className='placeholder:text-sm md:placeholder:text-base text-black bg-white my-2 block w-full px-2 py-1 md:px-4 md:py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm md:text-lg'
                 />
               </div>
             ) : (
@@ -149,7 +149,7 @@ const Register = () => {
                 value={registerData.username}
                 onChange={handleChange}
                 placeholder='Enter your name'
-                className='placeholder:text-sm md:placeholder:text-base text-black my-2 block w-full px-2 py-1 md:px-4 md:py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm md:text-lg'
+                className='placeholder:text-sm md:placeholder:text-base text-black bg-white my-2 block w-full px-2 py-1 md:px-4 md:py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm md:text-lg'
               />
             </div>
 
@@ -164,7 +164,7 @@ const Register = () => {
                 value={registerData.email}
                 onChange={handleChange}
                 placeholder='Enter your email'
-                className='placeholder:text-sm md:placeholder:text-base text-black my-2 block w-full px-2 py-1 md:px-4 md:py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm md:text-lg'
+                className='placeholder:text-sm md:placeholder:text-base text-black bg-white my-2 block w-full px-2 py-1 md:px-4 md:py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm md:text-lg'
               />
             </div>
 
@@ -179,7 +179,7 @@ const Register = () => {
                 value={registerData.password}
                 onChange={handleChange}
                 placeholder='Enter your password'
-                className='placeholder:text-sm md:placeholder:text-base text-black my-2 block w-full px-2 py-1 md:px-4 md:py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm md:text-lg'
+                className='placeholder:text-sm md:placeholder:text-base text-black bg-white my-2 block w-full px-2 py-1 md:px-4 md:py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm md:text-lg'
               />
             </div>
             <button

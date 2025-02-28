@@ -61,7 +61,7 @@ function Appointment() {
       <ToastContainer className='w-[80vw] mt-10 md:w-[25vw]' />
       <button
         onClick={() => navigate("/")}
-        className='py-2 px-4 text-sm md:text-md font-medium bg-blue-300 rounded-md float-right m-3 hover:bg-blue-400'>
+        className='py-1 px-2 md:py-2 md:px-4 text-sm md:text-md font-medium bg-blue-300 rounded-md float-right m-3 hover:bg-blue-400'>
         <FontAwesomeIcon icon={faArrowLeft} className='mx-2 md:mx-3' />
         Back to HomePage
       </button>
@@ -82,7 +82,7 @@ function Appointment() {
               <input
                 type='text'
                 name='fName'
-                className='flex-1 p-2 border-2 border-gray-300 rounded-md outline-blue-400'
+                className='flex-1 p-2 border-2 bg-white border-gray-300 rounded-md outline-blue-400'
                 placeholder='First Name'
                 value={patientInfo.fName}
                 onChange={handleChange}
@@ -91,7 +91,7 @@ function Appointment() {
               <input
                 type='text'
                 name='lName'
-                className='flex-1 p-2 border-2 border-gray-300 rounded-md outline-blue-400'
+                className='flex-1 p-2 border-2 bg-white border-gray-300 rounded-md outline-blue-400'
                 placeholder='Last Name'
                 value={patientInfo.lName}
                 onChange={handleChange}
@@ -101,7 +101,7 @@ function Appointment() {
             <input
               type='email'
               name='email'
-              className='w-full p-2 border-2 border-gray-300 rounded-md outline-blue-400'
+              className='w-full p-2 border-2 bg-white border-gray-300 rounded-md outline-blue-400'
               placeholder='Email Address'
               value={patientInfo.email}
               onChange={handleChange}
@@ -110,7 +110,7 @@ function Appointment() {
             <input
               type='tel'
               name='mobile'
-              className='w-full p-2 border-2 border-gray-300 rounded-md outline-blue-400'
+              className='w-full p-2 border-2 bg-white border-gray-300 rounded-md outline-blue-400'
               placeholder='Mobile Number'
               value={patientInfo.mobile}
               onChange={handleChange}
@@ -130,7 +130,7 @@ function Appointment() {
               </div>
             </div>
             <select
-              className='w-full p-2 border-2 border-gray-300 rounded-md outline-blue-400'
+              className='w-full p-2 border-2 bg-white border-gray-300 rounded-md outline-blue-400'
               value={patientInfo.department}
               name='department'
               onChange={handleChange}
@@ -153,7 +153,7 @@ function Appointment() {
                   min={new Date().toISOString().split("T")[0]}
                   value={patientInfo.date}
                   onChange={handleChange}
-                  className='w-full p-2 border-2 border-gray-300 rounded-md outline-blue-400'
+                  className='w-full p-2 border-2 bg-white border-gray-300 rounded-md outline-blue-400'
                   required
                 />
               </div>
@@ -164,7 +164,7 @@ function Appointment() {
                   name='time'
                   value={patientInfo.time}
                   onChange={handleChange}
-                  className='w-full p-2 border-2 border-gray-300 rounded-md outline-blue-400'
+                  className='w-full p-2 border-2 bg-white border-gray-300 rounded-md outline-blue-400'
                   min="09:00"
                   max="21:00"
                   required

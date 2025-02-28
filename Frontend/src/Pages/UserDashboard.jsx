@@ -7,7 +7,7 @@ import Setting from '../Components/Setting'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
-const UserDashboard = ({setIsLoggedIn}) => {
+const UserDashboard = () => {
   const navigate=useNavigate();
     const [userData,setUserData]=useState({});
     const [displaySection,setDisplaySection]=useState("MyBooking");
@@ -33,7 +33,6 @@ const UserDashboard = ({setIsLoggedIn}) => {
         localStorage.removeItem("role");
         setTimeout(() => {
           navigate("/login");
-          setIsLoggedIn(false);
         }, 1500);
         return toast.success("Logout successfully", {
                       position: "top-center",
@@ -79,7 +78,6 @@ const UserDashboard = ({setIsLoggedIn}) => {
             
             setTimeout(() => {
               navigate("/register");
-              setIsLoggedIn(false);
             }, 1500);
           }
         } catch (error) {
@@ -92,11 +90,11 @@ const UserDashboard = ({setIsLoggedIn}) => {
       };
       
   return (
-  <div className='bg-[#F0F8FF] h-[89vh]'>
+  <div className='bg-[#F0F8FF] h-[160vh] md:h-screen'>
   <ToastContainer className='mt-10 w-[25vw]' />
-  <FontAwesomeIcon icon={faArrowLeft} size='xl' color='blue' className='cursor-pointer mx-[50px] my-4' onClick={()=>navigate("/")}/>
-   <div className="flex justify-center pt-5">
-    <div className="flex flex-col justify-between h-[70vh] px-10 shadow-md py-2 bg-white">
+  <FontAwesomeIcon icon={faArrowLeft} size='xl' color='blue' className='cursor-pointer mx-10 md:mx-[50px] my-4' onClick={()=>navigate("/")}/>
+   <div className="flex flex-col md:flex-row gap-5 justify-center  pt-5">
+    <div className="flex flex-col justify-between h-[70vh] px-3 mx-8 md:mx-0 md:px-10 shadow-md py-2 bg-white">
       <div>   
         <div className="profileImg flex items-center justify-center">
           <p className="flex items-center justify-center text-4xl w-20 h-20 rounded-full bg-violet-900 text-white font-bold">
@@ -109,21 +107,20 @@ const UserDashboard = ({setIsLoggedIn}) => {
         </div>
       </div>
       <div className="flex flex-col gap-5 items-center">
-        <button className="text-white bg-slate-900 py-2 w-52 rounded-md" onClick={handleLogout}>Log out</button>
-        <button className="bg-red-500 text-white py-2 w-52 rounded-md" onClick={handleDeleteAccount}>Delete Account</button>
+        <button className="text-white bg-slate-900 text-sm md:text-lg py-2 w-60 rounded-md" onClick={handleLogout}>Log out</button>
+        <button className="bg-red-500 text-white text-sm md:text-lg py-2 w-60  rounded-md" onClick={handleDeleteAccount}>Delete Account</button>
       </div>
     </div>
-    <div className="flex flex-col w-[40vw] h-[70vh] ml-10 p-4 bg-white">
-      <div className="flex gap-5">
-        <button className={`py-1 px-4 border-2 border-blue-200 rounded-md ${displaySection==="MyBooking"?"bg-blue-800 text-white border-none":"bg-white text-black"}`} onClick={()=>setDisplaySection("MyBooking")}>My Bookings</button>
-        <button className={`py-1 px-4 border-2 border-blue-200 rounded-md ${displaySection==="Setting"?"bg-blue-800 text-white border-none":"bg-white text-black"}`} onClick={()=>setDisplaySection("Setting")}>Settings</button>
+    <div className="flex flex-col md:w-[40vw] h-[70vh] mx-8 md:ml-10 p-4 bg-white">
+      <div className="flex justify-center md:justify-start gap-5">
+        <button className={`py-1 text-sm md:text-lg px-4 border-2 border-blue-200 rounded-md ${displaySection==="MyBooking"?"bg-blue-800 text-white border-none":"bg-white text-black"}`} onClick={()=>setDisplaySection("MyBooking")}>My Bookings</button>
+        <button className={`py-1 text-sm md:text-lg px-4 border-2 border-blue-200 rounded-md ${displaySection==="Setting"?"bg-blue-800 text-white border-none":"bg-white text-black"}`} onClick={()=>setDisplaySection("Setting")}>Settings</button>
       </div>
       <div className="mt-3 overflow-y-scroll scrollbar-thin">
         {displaySection==="MyBooking"?<MyBooking />:<Setting />} 
       </div>
     </div>
   </div>
-  
   </div>
   
   )

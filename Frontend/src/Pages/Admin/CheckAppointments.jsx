@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import PaginationComponent from '../../Components/Admin/PaginationComponent';
+import CheckAppoSkeleton from './Skeletons/CheckAppoSkeleton';
 const SeeAppointments = () => {
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -47,7 +48,7 @@ const SeeAppointments = () => {
         </h1>
 
         {loading ? (
-          <p className="text-center text-lg text-blue-600">Fetching Appointments...</p>
+          <CheckAppoSkeleton/>
         ) : (
           <table className="w-full border-collapse mt-10 border-separate border-spacing-y-3">
             <thead>

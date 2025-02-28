@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import EditDoctorModal from '../../Components/Admin/EditDoctorModal';
 import DeleteDoctorPopup from '../../Components/Admin/DeleteDoctorPopup';
+import CheckDoctorsSkeleton from './Skeletons/CheckDoctorsSkeleton';
 const CheckDoctors = () => {
     const [loading,setLoading]=useState(true);
     const [doctors,setDoctors]=useState([]);
@@ -67,7 +68,7 @@ const CheckDoctors = () => {
       </div>
 
       {loading ? (
-        <p className="text-center text-lg text-blue-600">Fetching Doctors...</p>
+        <CheckDoctorsSkeleton/>
       ) : (
         <table className="w-full border-collapse mt-10 border-separate border-spacing-y-3">
           <thead>

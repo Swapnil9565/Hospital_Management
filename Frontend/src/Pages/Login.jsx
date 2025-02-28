@@ -81,7 +81,7 @@ const Login = () => {
           name="email"
           value={loginData.email} onChange={handleChange} 
           placeholder="Enter your email"
-          className="placeholder:text-sm md:placeholder:text-base my-2 block w-full px-2 py-1 md:px-4 md:py-2 text-black border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm md:text-lg"
+          className="placeholder:text-sm md:placeholder:text-base my-2 bg-white block w-full px-2 py-1 md:px-4 md:py-2 text-black border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm md:text-lg"
         />
       </div>
 
@@ -93,7 +93,7 @@ const Login = () => {
           name="password"
           value={loginData.password} onChange={handleChange} 
           placeholder="Enter your password"
-          className="placeholder:text-sm md:placeholder:text-base my-2 block w-full px-2 py-1 md:px-4 md:py-2 text-black border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm md:text-lg"
+          className="placeholder:text-sm md:placeholder:text-base my-2 bg-white block w-full px-2 py-1 md:px-4 md:py-2 text-black border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm md:text-lg"
         />
       </div>
       <button 

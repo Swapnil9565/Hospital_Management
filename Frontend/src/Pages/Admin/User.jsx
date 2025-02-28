@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTrash } from "@fortawesome/free-solid-svg-icons"
 import React, { useEffect, useState } from "react";
 import PaginationComponent from "../../Components/Admin/PaginationComponent";
+import UserSkeleton from "./Skeletons/UserSkeleton";
 const User = () => {
   const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState([]);
@@ -47,7 +48,7 @@ const User = () => {
         </h1>
 
         {loading ? (
-          <p className='text-center text-lg text-blue-600'>Fetching users...</p>
+          <UserSkeleton rows={10} columns={5}/>
         ) : (
           <table className='w-full border-collapse mt-10 border-separate border-spacing-y-3'>
             <thead>
