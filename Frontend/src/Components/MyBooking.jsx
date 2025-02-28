@@ -61,10 +61,10 @@ const MyBooking = () => {
       fetchBookings();
     }
   }, [userData]);
-
-  const cancelAppointment=async()=>{
+  console.log(bookingData[0]._id);
+  const cancelAppointment=async(appoId)=>{
     try {
-      const res=await axios.delete(`https://hospital-management-99yz.onrender.com/api/user/cancelAppointment/${bookingData._id}`,{
+      const res=await axios.delete(`https://hospital-management-99yz.onrender.com/api/user/cancelAppointment/${appoId}`,{
         headers:{
           "Content-Type":"application/json"
         }
@@ -118,7 +118,7 @@ const MyBooking = () => {
                     <p className='text-sm text-gray-600'>Time: {data.time}</p>
                   </div>
                   <div className='flex flex-row gap-4 self-start text-sm'>
-                    <button className='px-2 py-1 text-white bg-red-500 hover:bg-red-600 rounded-md transition cursor-pointer' onClick={cancelAppointment}>
+                    <button className='px-2 py-1 text-white bg-red-500 hover:bg-red-600 rounded-md transition cursor-pointer' onClick={()=>cancelAppointment(data._id)}>
                       Cancel
                     </button>
                     <button className='px-2 py-1 text-white bg-blue-800 hover:bg-blue-600 rounded-md transition cursor-pointer'>
