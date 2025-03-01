@@ -86,8 +86,8 @@ router.delete("/deleteAccount/:userId",authMiddleware,async(req,res)=>{
 
 router.delete("/cancelAppointment/:appoId",async(req,res)=>{
   try {
-    const {appointmet_id}=req.params;
-    const appointment=await appointmentModel.deleteById({appointmet_id});
+    const {appoId}=req.params;
+    const appointment=await appointmentModel.findByIdAndDelete(appoId);
     if(appointment.deletedCount === 0){
       return res.status(404).json({message:"Appointment not found"});
     }
