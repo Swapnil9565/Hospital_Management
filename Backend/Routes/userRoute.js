@@ -107,6 +107,9 @@ router.patch("/editProfile",async(req,res)=>{
     if(!user){
       return res.status(404).json({message:"User not found"});
     }
+    if (req.body.email && req.body.email !== email) {
+      return res.status(403).json({ message: "Email cannot be changed" });
+    }
     if(username) user.username=username;
     if(password){
       const salt = await bcrypt.genSalt(10);
