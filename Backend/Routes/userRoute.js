@@ -1,5 +1,5 @@
 const express = require("express");
-const bcrypt=require("bcryptjs")
+const bcrypt=require("bcrypt")
 const router = express.Router();
 const authMiddleware = require("../middlewares/authMiddleware");
 const appointmentModel = require("../models/appointmentModel");
