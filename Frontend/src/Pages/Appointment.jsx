@@ -61,7 +61,7 @@ function Appointment() {
       <ToastContainer className='w-[80vw] mt-10 md:w-[25vw]' />
       <button
         onClick={() => navigate("/")}
-        className='py-1 px-2 md:py-2 md:px-4 text-sm md:text-md font-medium bg-blue-300 rounded-md float-right m-3 hover:bg-blue-400'>
+        className='cursor-pointer py-1 px-2 md:py-2 md:px-4 text-sm md:text-md font-medium bg-blue-300 rounded-md float-right m-3 hover:bg-blue-400'>
         <FontAwesomeIcon icon={faArrowLeft} className='mx-2 md:mx-3' />
         Back to HomePage
       </button>
@@ -173,7 +173,7 @@ function Appointment() {
             </div>
             <button
               type='submit'
-              className='w-full bg-green-400 hover:bg-green-500 text-white font-bold py-3 rounded-md'>
+              className='cursor-pointer w-full bg-green-400 hover:bg-green-500 text-white font-bold py-3 rounded-md'>
               Book Appointment
             </button>
           </form>

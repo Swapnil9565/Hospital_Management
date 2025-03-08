@@ -46,8 +46,8 @@ function Home() {
       <h1 className='underline text-lg md:text-4xl py-3 md:py-5 text-blue-800 font-bold'>Welcome to MedZone</h1>
       <p className='text-xl md:text-5xl py-1 md:py-2 font-medium'>Best healthcare Solution <br /> in your City</p>
       <div className="mt-5 md:mt-10 font-bold">
-      <button className="text-xs md:text-lg bg-blue-200 rounded-md p-1 md:p-2 mx-1 md:mx-3 transition-all hover:bg-blue-400" onClick={scrollToStaff}>Find Doctors</button>
-      <button onClick={handleAppointment} className="text-xs md:text-lg bg-blue-200 rounded-md p-1 md:p-2 mx-1 md:mx-3 transition-all hover:bg-blue-400">Appointment</button>
+      <button className="cursor-pointer text-xs md:text-lg bg-blue-200 rounded-md p-1 md:p-2 mx-1 md:mx-3 transition-all hover:bg-blue-400" onClick={scrollToStaff}>Find Doctors</button>
+      <button onClick={handleAppointment} className="cursor-pointer text-xs md:text-lg bg-blue-200 rounded-md p-1 md:p-2 mx-1 md:mx-3 transition-all hover:bg-blue-400">Appointment</button>
       </div>
     </div> 
     </div>

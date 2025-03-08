@@ -98,7 +98,7 @@ const Login = () => {
       </div>
       <button 
         type="submit" 
-        className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium  px-2 py-2 md:px-4 text-sm md:text-lg rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium cursor-pointer  px-2 py-2 md:px-4 text-sm md:text-lg rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
         Log In
       </button>
       <p className='text-center text-sm md:text-lg my-2'>Don't have an account? <Link to="/register" className="text-blue-300 font-semibold text-sm md:text-lg ">Sign Up Now </Link> </p>

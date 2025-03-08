@@ -1,4 +1,5 @@
 const express = require("express");
+const bcrypt=require("bcryptJs")
 const router = express.Router();
 const authMiddleware = require("../middlewares/authMiddleware");
 const appointmentModel = require("../models/appointmentModel");
@@ -55,6 +56,7 @@ router.post("/message",authMiddleware,async(req,res)=>{
     }
 
 })
+//Get request for fetching bookings
 router.get("/fetchBooking/:userId",async(req,res)=>{
   try {
     const {userId}=req.params;
@@ -68,7 +70,7 @@ router.get("/fetchBooking/:userId",async(req,res)=>{
   }
 
 })
-
+//Deleting user account
 router.delete("/deleteAccount/:userId",authMiddleware,async(req,res)=>{
   try {
     const user=req.user;
@@ -83,7 +85,7 @@ router.delete("/deleteAccount/:userId",authMiddleware,async(req,res)=>{
   }
  
 })
-
+//deleting appointment booked by user
 router.delete("/cancelAppointment/:appoId",async(req,res)=>{
   try {
     const {appoId}=req.params;
@@ -96,5 +98,25 @@ router.delete("/cancelAppointment/:appoId",async(req,res)=>{
     return res.status(500).json({error:"Internal Server Error"});
   }
 
+})
+
+router.patch("/editProfile",async(req,res)=>{
+  const {username,email,password}=req.body;
+  try {
+    const user=await userModel.findOne({email});
+    if(!user){
+      return res.status(404).json({message:"User not found"});
+    }
+    if(username) user.username=username;
+    if(password){
+      const salt = await bcrypt.genSalt(10);
+      user.password = await bcrypt.hash(password, salt);
+    }
+    await user.save();
+    res.status(200).json({message:"Profile updated successfully",user})
+  } catch (error) {
+    res.status(500).json({message:"Internal Server Error"})
+  }
+ 
 })
 module.exports = router;
