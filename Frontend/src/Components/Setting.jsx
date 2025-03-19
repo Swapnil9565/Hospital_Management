@@ -30,11 +30,19 @@ const Setting = () => {
         const {username,email}=res.data.userInfo;
         setFormData({
           username,
-          email
+          email,
+          password:""
         })
       }
     } catch (error) {
-      alert("Something went wrong while fetching user info");
+      toast.error(error.response.data.message || "Something went wrong", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     }
   };
 
@@ -57,7 +65,7 @@ const Setting = () => {
       if (res.status === 200) {
         const { username,password } = res.data.user;
         setFormData({ ...formData, username, password });
-        toast.success(res.data.message, {
+       return toast.success(res.data.message, {
           position: "top-center",
           autoClose: 3000,
           hideProgressBar: false,
@@ -67,16 +75,39 @@ const Setting = () => {
           progress: undefined,
         });
       }
+      
     } catch (error) {
-      toast.error("Something went wrong while updating profile", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      if (error.response) {
+        if (error.response.status === 400) {
+          toast.error(error.response.data.message || "Invalid input", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+        } else {
+          toast.error(error.response.data.message || "Something went wrong", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+        }
+      } else {
+        toast.error("Network error. Please try again.", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      }
+    
     }
   };
   return (
@@ -103,6 +134,7 @@ const Setting = () => {
             placeholder='Email'
             className='w-full border-b-2 border-gray-400 focus:border-blue-500 outline-none text-sm md:text-lg py-2 px-1 transition-all'
             onChange={handleChange}
+            disabled
           />
         </div>
         <div className='relative'>
