@@ -1,9 +1,12 @@
+import { faEye,faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Setting = () => {
+  const [showPassword,setShowPassword]=useState(true);
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -111,6 +114,8 @@ const Setting = () => {
     }
   };
   return (
+    <div>
+          <ToastContainer className='mt-10 ml-10 md:mt-2 md:ml-0 w-[60vw] md:w-[25vw]' />
     <div className='px-2 md:px-6 py-1'>
       <h1 className='text-lg md:text-2xl font-semibold my-4'>
         Profile Settings
@@ -139,18 +144,20 @@ const Setting = () => {
         </div>
         <div className='relative'>
           <input
-            type='password'
+            type={showPassword?"password":"text"}
             name='password'
             value={formData.password}
             placeholder='New Password'
             className='w-full border-b-2 border-gray-400 focus:border-blue-500 outline-none text-sm md:text-lg py-2 px-1 transition-all'
             onChange={handleChange}
           />
+          <FontAwesomeIcon icon={showPassword? faEye:faEyeSlash} onClick={()=>setShowPassword(!showPassword)} className="cursor-pointer absolute right-2 top-1/2 -translate-y-1/2"/>
         </div>
         <button className='mt-4 bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-all text-sm md:text-lg'>
           Update Profile
         </button>
       </form>
+    </div>
     </div>
   );
 };
