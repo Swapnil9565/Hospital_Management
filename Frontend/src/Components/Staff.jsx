@@ -13,7 +13,7 @@ function Staff({staffRef}) {
         return (
           <div
             key={id}
-            className='w-72 md:w-64 h-[75vh] md:h-[60vh] flex flex-col items-center justify-center border-2 border-gray rounded-md  bg-white transition-transform hover:scale-105'>
+            className='w-72 md:w-64 h-[75vh] md:h-[60vh] flex flex-col items-center justify-center border-2 border-gray-200 rounded-md  bg-white transition-transform hover:scale-105'>
             <div className='aspect-square'>{docImg}</div>
             <div className='mt-4'>
               <h1 className="text-lg font-bold">{docName}</h1>

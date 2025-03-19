@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Setting = () => {
@@ -13,30 +14,61 @@ const Setting = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+  const fetchUserData = async () => {
+    try {
+      const res = await axios.get(
+        "https://hospital-management-99yz.onrender.com/api/user/fetchUserInfo",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      );
 
+      if (res.status === 200) {
+        const {username,email}=res.data.userInfo;
+        setFormData({
+          username,
+          email
+        })
+      }
+    } catch (error) {
+      alert("Something went wrong while fetching user info");
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
   const handleProfileSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.patch(
-        "https://hospital-management-99yz.onrender.com/api/user/editProfile",
-        { username: formData.username, password: formData.password }, // Prevent updating email
-        { headers: { "Content-Type": "application/json" } }
+        "https://hospital-management-99yz.onrender.com/api/user/updateProfile",
+        { username: formData.username, password: formData.password },
+        { headers:
+           { 
+            "Content-Type": "application/json",
+             "Authorization":localStorage.getItem("token")
+            } 
+        }
       );
       if (res.status === 200) {
-        const {username,password}=res.data.user;
-        setFormData({...formData,username,password});
+        const { username,password } = res.data.user;
+        setFormData({ ...formData, username, password });
         toast.success(res.data.message, {
-              position: "top-center",
-              autoClose: 3000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       }
     } catch (error) {
-       toast.error("Something went wrong while updating profile",{
+      toast.error("Something went wrong while updating profile", {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
@@ -46,7 +78,6 @@ const Setting = () => {
         progress: undefined,
       });
     }
-   
   };
   return (
     <div className='px-2 md:px-6 py-1'>
@@ -79,7 +110,7 @@ const Setting = () => {
             type='password'
             name='password'
             value={formData.password}
-            placeholder='Password'
+            placeholder='New Password'
             className='w-full border-b-2 border-gray-400 focus:border-blue-500 outline-none text-sm md:text-lg py-2 px-1 transition-all'
             onChange={handleChange}
           />
