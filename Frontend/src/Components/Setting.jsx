@@ -68,6 +68,8 @@ const Setting = () => {
       if (res.status === 200) {
         const { username,password } = res.data.user;
         setFormData({ ...formData, username, password });
+        const storedUser = JSON.parse(localStorage.getItem("user")) || {};
+        localStorage.setItem("user", JSON.stringify({ ...storedUser, username }));
        return toast.success(res.data.message, {
           position: "top-center",
           autoClose: 3000,
@@ -137,7 +139,7 @@ const Setting = () => {
             name='email'
             value={formData.email}
             placeholder='Email'
-            className='w-full border-b-2 border-gray-400 focus:border-blue-500 outline-none text-sm md:text-lg py-2 px-1 transition-all'
+            className='text-gray-400 w-full border-b-2 border-gray-400 focus:border-blue-500 outline-none text-sm md:text-lg py-2 px-1 transition-all'
             onChange={handleChange}
             disabled
           />

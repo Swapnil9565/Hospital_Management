@@ -73,14 +73,10 @@ export default function AddDoctor() {
 
   return (
     <div
-      className='h-[90vh] pt-5'
-      style={{
-        background:
-          "radial-gradient(circle, rgba(63,94,251,1) 0%, rgb(14, 222, 249) 100%)",
-      }}>
+      className='h-[90vh] pt-5 bg-slate-800'>
       <ToastContainer className='w-[25vw]' />
-      <div className='max-w-lg mx-auto p-3 bg-white rounded-2xl shadow-lg'>
-        <h2 className='text-2xl font-semibold text-center mb-4'>
+      <div className='max-w-lg mx-auto p-3 bg-[#E0E0E0] rounded-2xl shadow-lg'>
+        <h2 className='text-2xl font-semibold text-center mb-4 text-blue-900'>
           Add a New Doctor
         </h2>
         <form
@@ -157,7 +153,7 @@ export default function AddDoctor() {
           </div>
           <button
             type='submit'
-            className='w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600'>
+            className='w-full bg-[#053A6F] text-white p-2 rounded-lg '>
             Add Doctor
           </button>
         </form>

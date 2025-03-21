@@ -135,7 +135,7 @@ router.patch("/updateProfile", authMiddleware, async (req, res) => {
     if (password) {
       const isSamePassword = await bcrypt.compare(password, user.password);
       if (isSamePassword) {
-        return res.status(400).json({ message: "New password cannot be the same as the old password" });
+        return res.status(400).json({ message: "This password has already been used" });
       }
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(password, salt);

@@ -25,7 +25,7 @@ const UserDashboard = () => {
     useEffect(()=>{
         const data=localStorage.getItem("user");
         setUserData(JSON.parse(data));
-    },[]);
+    },[userData]);
 
      const handleLogout=()=>{
         localStorage.removeItem("token");
@@ -91,7 +91,7 @@ const UserDashboard = () => {
       
   return (
   <div className='bg-[#F0F8FF] h-[160vh] md:h-screen'>
-  <ToastContainer className='mt-10 w-[25vw]' />
+  {/* <ToastContainer className='mt-10 w-[25vw]' /> */}
   <FontAwesomeIcon icon={faArrowLeft} size='xl' color='blue' className='cursor-pointer mx-10 md:mx-[50px] my-4' onClick={()=>navigate("/")}/>
    <div className="flex flex-col md:flex-row gap-5 justify-center  pt-5">
     <div className="flex flex-col justify-between h-[70vh] px-3 mx-8 md:mx-0 md:px-10 shadow-md py-2 bg-white">
