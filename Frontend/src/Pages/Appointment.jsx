@@ -24,22 +24,25 @@ function Appointment() {
   });
   
   // Getting all appointment details by id on component mount
-   useEffect(async()=>{
-    if(id){
-      try {
-        const res= await axios.get(`https://hospital-management-99yz.onrender.com/api/user/appointment/${id}`,{
-          headers:{
-            Authorization:localStorage.getItem("token")
+   useEffect(()=>{
+    const fetchAppointmentData=async()=>{
+      if(id){
+        try {
+          const res= await axios.get(`https://hospital-management-99yz.onrender.com/api/user/appointment/${id}`,{
+            headers:{
+              Authorization:localStorage.getItem("token")
+            }
+          })
+    
+          if(res.status===200){
+             setPatienInfo(res.data);
           }
-        })
-  
-        if(res.status===200){
-           setPatienInfo(res.data);
+        } catch (error) {
+          toast.error("Failed to load appointment detail")
         }
-      } catch (error) {
-        toast.error("Failed to load appointment detail")
-      }
-    }  
+      }  
+    }
+  fetchAppointmentData();
    },[id])
   const handleChange = (e) => {
     const { name, value } = e.target;
