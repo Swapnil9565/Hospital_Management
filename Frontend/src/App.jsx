@@ -26,6 +26,7 @@ function App() {
 
         <Route element={<ProtectedRoute allowedRole="user" />}>
           <Route path='/appointment' element={<Appointment />} />
+          <Route path='/appointment/:id' element={<Appointment />} />
           <Route path="/userDashboard" element={<UserDashboard/>}/>
         </Route>
 
