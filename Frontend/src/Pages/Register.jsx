@@ -106,7 +106,7 @@ const Register = () => {
                     onChange={handleChange}
                     className='mr-2'
                   />
-                  User
+                  Patient
                 </label>
 
                 <label className='flex items-center mx-1 text-sm md:text-lg'>

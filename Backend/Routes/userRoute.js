@@ -7,7 +7,7 @@ const MessageModel = require("../models/MessageModel");
 const moment = require("moment");
 const userModel = require("../models/userModel");
 
-//Appointments post api
+//Create a new appointment
 router.post("/appointment", authMiddleware, async (req, res) => {
   const user = req.user;
   const { fName, lName, email, mobile, department, gender, date, time } =
@@ -32,6 +32,42 @@ router.post("/appointment", authMiddleware, async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: "Something went wrong" });
     console.log(err);
+  }
+});
+//Getting appointment details by id
+router.get("/appointment/:id",async(req,res)=>{
+  const {id}=req.params;
+try {
+  const appointmentData=await appointmentModel.findById(id);
+
+  if(!appointmentData){
+    return res.status(404).json({message:"Appointment data not found"})
+  }
+  res.status(200).json({message:"Appointment data fetched successfully",appointmentData})
+  
+} catch (error) {
+  res.status(500).json({ message: "Error fetching appointment", error: error.message });
+}
+})
+// Updating existing appointment
+router.put("/updateAppointment/:id", async (req, res) => {
+  const { id } = req.params;
+  const { fName, lName, email, mobile, department, gender, date, time } =
+    req.body;
+  try {
+    const updateAppointment = await appointmentModel.findByIdAndUpdate(
+      id,
+      { fName, lName, email, mobile, department, gender, date, time },
+      { new: true, runValidators: true }
+    );
+
+    if (!updateAppointment) {
+      return res.status(404).json({ message: "Appointment not found" });
+    }
+
+    res.status(200).json({ message: "Appointment updated successfully", updateAppointment });
+  } catch (error) {
+    res.status(500).json({ message: "Error updating appointment", error: error.message });
   }
 });
 
@@ -104,18 +140,19 @@ router.delete("/cancelAppointment/:appoId", async (req, res) => {
   }
 });
 //fetching user info by their id
-router.get("/fetchUserInfo",authMiddleware,async(req,res)=>{
-    const userInfo=await userModel.findById(req.user.id);
-    try {
-      if(!userInfo){
-        return res.status(404).json({message:"User info not found"});
-      }
-      res.status(200).json({message:"User info fetched successfully",userInfo});
-    } catch (error) {
-      return res.status(500).json({message:"Internal server error"});
+router.get("/fetchUserInfo", authMiddleware, async (req, res) => {
+  const userInfo = await userModel.findById(req.user.id);
+  try {
+    if (!userInfo) {
+      return res.status(404).json({ message: "User info not found" });
     }
-  
-})
+    res
+      .status(200)
+      .json({ message: "User info fetched successfully", userInfo });
+  } catch (error) {
+    return res.status(500).json({ message: "Internal server error" });
+  }
+});
 //Updating user info
 router.patch("/updateProfile", authMiddleware, async (req, res) => {
   const { username, email, password } = req.body;
@@ -135,7 +172,9 @@ router.patch("/updateProfile", authMiddleware, async (req, res) => {
     if (password) {
       const isSamePassword = await bcrypt.compare(password, user.password);
       if (isSamePassword) {
-        return res.status(400).json({ message: "This password has already been used" });
+        return res
+          .status(400)
+          .json({ message: "This password has already been used" });
       }
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(password, salt);
@@ -143,17 +182,18 @@ router.patch("/updateProfile", authMiddleware, async (req, res) => {
 
     await user.save();
 
-    res.status(200).json({ 
-      message: "Profile updated successfully", 
+    res.status(200).json({
+      message: "Profile updated successfully",
       user: {
         id: user._id,
         username: user.username,
-        email: user.email
-      }
+        email: user.email,
+      },
     });
-
   } catch (error) {
-    res.status(500).json({ message: "Internal Server Error", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Internal Server Error", error: error.message });
   }
 });
 module.exports = router;

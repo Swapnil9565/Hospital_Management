@@ -6,10 +6,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Appointment() {
     const navigate=useNavigate();
+    const {id}=useParams;
+
   const [patientInfo, setPatienInfo] = useState({
     fName: "",
     lName: "",
@@ -20,21 +22,51 @@ function Appointment() {
     date: "",
     time: ""
   });
-
-
+  
+  // Getting all appointment details by id on component mount
+   useEffect(async()=>{
+    if(id){
+      try {
+        const res= await axios.get(`https://hospital-management-99yz.onrender.com/api/user/appointment/${id}`,{
+          headers:{
+            Authorization:localStorage.getItem("token")
+          }
+        })
+  
+        if(res.status===200){
+           setPatienInfo(res.data);
+        }
+      } catch (error) {
+        toast.error("Failed to load appointment detail")
+      }
+    }  
+   },[id])
   const handleChange = (e) => {
     const { name, value } = e.target;
     setPatienInfo({...patientInfo,[name]:value});
   };
   const handleSubmit = async(e) => {
     e.preventDefault();
-    
-    const res=await axios.post("https://hospital-management-99yz.onrender.com/api/user/appointment",patientInfo,{
-      headers:{
-        "Content-Type":"application/json",
-        "Authorization":localStorage.getItem("token")
-      }
-    })
+    let res;
+    if(id){
+      //updating existing appointment
+       res=await axios.put(`https://hospital-management-99yz.onrender.com/api/user/updateAppointment/${id}`,patientInfo,{
+        headers:{
+          "Content-Type":"application/json",
+          Authorization:localStorage.getItem("token")
+        }
+      })
+    }
+    else{
+      //Creating new appointment
+       res=await axios.post("https://hospital-management-99yz.onrender.com/api/user/appointment",patientInfo,{
+        headers:{
+          "Content-Type":"application/json",
+          "Authorization":localStorage.getItem("token")
+        }
+      })
+    }
+   
     toast.success(res.data.message, {
       position: "top-center",
       autoClose: 3000,
@@ -44,16 +76,18 @@ function Appointment() {
       draggable: true,
       progress: undefined,
     });
-    setPatienInfo({
-      fName: "",
-      lName: "",
-      email: "",
-      mobile: "",
-      department: "",
-      gender:"",
-      date: "",
-      time: ""
-    });
+    if(!id){
+      setPatienInfo({
+        fName: "",
+        lName: "",
+        email: "",
+        mobile: "",
+        department: "",
+        gender:"",
+        date: "",
+        time: ""
+      });
+    }
   };
 
   return (
@@ -76,7 +110,7 @@ function Appointment() {
         <div className='w-full md:w-1/2 px-1 py-2 md:py-4 md:px-2'>
           <form onSubmit={handleSubmit} className='space-y-4'>
             <h1 className='text-center text-black font-bold uppercase text-lg md:text-xl mb-4'>
-              Book An Appointment
+             {id? "Reschedule An Appointment":"Book An Appointment"} 
             </h1>
             <div className='flex flex-col md:flex-row gap-4'>
               <input
@@ -174,7 +208,7 @@ function Appointment() {
             <button
               type='submit'
               className='cursor-pointer w-full bg-green-400 hover:bg-green-500 text-white font-bold py-3 rounded-md'>
-              Book Appointment
+              {id?"Update Appointment":"Book Appointment"}
             </button>
           </form>
         </div>

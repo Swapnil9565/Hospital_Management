@@ -45,7 +45,7 @@ const Footer = () => {
             name="email"
             placeholder="Your Email"
             required
-            className="w-3/4 text-center p-1 md:p-2"
+            className="w-3/4 text-center p-1 md:p-2 border-2 border-gray-200 outline-none"
           />
           <button
             type="submit"

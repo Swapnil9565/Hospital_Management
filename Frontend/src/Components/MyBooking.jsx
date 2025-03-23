@@ -1,9 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify";
 import MyBookingSkeleton from "./Skeletons/MyBookingSkeleton";
 const MyBooking = () => {
+  const navigate=useNavigate();
+
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState({});
   const [bookingData, setBookingData] = useState([]);
@@ -123,7 +126,7 @@ const MyBooking = () => {
                     <button className={`${deletingId===data._id?"bg-red-200 cursor-not-allowed":"bg-red-500 cursor-pointer"} px-2 py-1 text-white  rounded-md transition`} onClick={()=>cancelAppointment(data._id)} disabled={deletingId ? true : false}>
                      {deletingId===data._id?"Cancelled":"Cancel"}
                     </button>
-                    <button className={`${deletingId===data._id?"bg-blue-200 cursor-not-allowed":"bg-blue-800 cursor-pointer"} px-2 py-1 text-white  rounded-md transition `} disabled={deletingId ? true : false}>
+                    <button className={`${deletingId===data._id?"bg-blue-200 cursor-not-allowed":"bg-blue-800 cursor-pointer"} px-2 py-1 text-white  rounded-md transition `} disabled={deletingId ? true : false} onClick={()=>navigate(`/appointment/${data._id}`)}>
                       Reschedule
                     </button>
                   </div>

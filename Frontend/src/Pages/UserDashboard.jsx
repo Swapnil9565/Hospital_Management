@@ -25,7 +25,7 @@ const UserDashboard = () => {
     useEffect(()=>{
         const data=localStorage.getItem("user");
         setUserData(JSON.parse(data));
-    },[userData]);
+    },[]);
 
      const handleLogout=()=>{
         localStorage.removeItem("token");
