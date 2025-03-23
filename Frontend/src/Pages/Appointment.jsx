@@ -35,7 +35,7 @@ function Appointment() {
           })
     
           if(res.status===200){
-             setPatienInfo(res.data);
+             setPatienInfo(res.data.appointmentData);
           }
         } catch (error) {
           toast.error("Failed to load appointment detail")
