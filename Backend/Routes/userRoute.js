@@ -14,7 +14,6 @@ router.post("/appointment", authMiddleware, async (req, res) => {
     req.body;
   try {
     const formattedDate = moment(date, "YYYY-MM-DD").format("YYYY-MM-DD");
-    const formattedTime = moment(time, "HH:mm").format("hh:mm A");
     const appointment = await appointmentModel.create({
       fName,
       lName,
@@ -23,7 +22,7 @@ router.post("/appointment", authMiddleware, async (req, res) => {
       department,
       gender,
       date: formattedDate,
-      time: formattedTime,
+      time,
       userId: user.id,
     });
     res

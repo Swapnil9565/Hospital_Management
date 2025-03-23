@@ -10,7 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 function Appointment() {
     const navigate=useNavigate();
-    const {id}=useParams;
+    const {id}=useParams();
 
   const [patientInfo, setPatienInfo] = useState({
     fName: "",
@@ -30,7 +30,7 @@ function Appointment() {
         try {
           const res= await axios.get(`https://hospital-management-99yz.onrender.com/api/user/appointment/${id}`,{
             headers:{
-              Authorization:localStorage.getItem("token")
+              "Content-Type":"application/json"
             }
           })
     
@@ -157,11 +157,11 @@ function Appointment() {
               <label className='text-slate-600 font-bold text-lg'>Gender:</label>
               <div className='flex gap-4'>
                 <label className='flex items-center gap-2'>
-                  <input type='radio' name='gender' value='Male' onChange={handleChange} required />
+                  <input type='radio' name='gender' value='Male' checked={patientInfo.gender === "Male"} onChange={handleChange} required />
                   Male
                 </label>
                 <label className='flex items-center gap-2'>
-                  <input type='radio' name='gender' value='Female' onChange={handleChange} required />
+                  <input type='radio' name='gender' value='Female' checked={patientInfo.gender === "Female"} onChange={handleChange} required />
                   Female
                 </label>
               </div>
