@@ -72,7 +72,7 @@ export default function AddDoctor() {
   };
 
   return (
-    <div className='h-screen pt-0 md:pt-5 bg-slate-800 flex justify-center items-center px-4'>
+    <div className='h-screen pt-2 md:pt-5 bg-slate-800 flex justify-center md:items-center px-4'>
     <ToastContainer className='w-[60vw] md:w-[40vw]' />
     <div className='w-full max-w-lg mx-auto p-2 md:p-5 bg-[#E0E0E0] rounded-2xl shadow-lg'>
       <h2 className='text-xl sm:text-2xl font-semibold text-center mb-4 text-blue-900'>
