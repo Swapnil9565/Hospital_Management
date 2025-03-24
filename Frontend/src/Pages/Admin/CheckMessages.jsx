@@ -9,6 +9,17 @@ const CheckMessages = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
+  // Detect screen size and adjust rowsPerPage
+  useEffect(() => {
+    const handleResize = () => {
+      setRowsPerPage(window.innerWidth < 768 ? 5 : 10);
+    };
+
+    handleResize(); // Set initial value
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   useEffect(() => {
     const fetchMessages = async () => {
       try {
@@ -40,19 +51,20 @@ const CheckMessages = () => {
 }
   return (
     <div>
-      <div className='h-[83vh] border-2 border-black m-5 rounded-md'>
-        <h1 className='font-bold text-2xl text-green-900 uppercase m-5'>
-          All Messages
-        </h1>
-
-        {loading ? (
-          <CheckMsgSkeleton/>
-        ) : (
-          <table className='w-full border-collapse mt-10 border-separate border-spacing-y-3'>
+    <div className='h-screen md:h-[83vh] border-2 border-black m-2 md:m-5 rounded-md md:overflow-hidden overflow-x-auto'>
+      <h1 className='font-bold text-xl md:text-2xl text-green-900 uppercase m-5'>
+        All Messages
+      </h1>
+  
+      {loading ? (
+        <CheckMsgSkeleton/>
+      ) : (
+        <div className='w-full md:overflow-hidden overflow-x-auto'>
+          <table className='w-full border-collapse mt-5 md:mt-10 border-separate border-spacing-y-3 text-sm md:text-base'>
             <thead>
-              <tr className='px-8 text-center'>
+              <tr className='text-center'>
                 <th>Serial No.</th>
-                 <th>Name</th>
+                <th>Name</th>
                 <th>Email</th>
                 <th>Contact No.</th>
                 <th>Message</th>
@@ -71,18 +83,24 @@ const CheckMessages = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan='8' className='text-center text-red-500'>
+                  <td colSpan='5' className='text-center text-red-500'>
                     No Messages found.
                   </td>
                 </tr>
               )}
             </tbody>
           </table>
-        )}
-     
-        <PaginationComponent totalItems={messages.length} currentPage={currentPage} rowsPerPage={rowsPerPage} onPageChange={handlePageChange}/> 
-      </div>
+        </div>
+      )}
+      <PaginationComponent 
+        totalItems={messages.length} 
+        currentPage={currentPage} 
+        rowsPerPage={rowsPerPage} 
+        onPageChange={handlePageChange} 
+        className="relative mt-5"
+      />
     </div>
+  </div>
   );
 };
 

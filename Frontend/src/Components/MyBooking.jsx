@@ -11,6 +11,7 @@ const MyBooking = () => {
   const [userData, setUserData] = useState({});
   const [bookingData, setBookingData] = useState([]);
   const [deletingId,setDeletingId]=useState(null);
+  
 
   useEffect(() => {
     const data = localStorage.getItem("user");
@@ -112,7 +113,7 @@ const MyBooking = () => {
                     <p className='text-lg font-semibold'>
                       {data.fName} {data.lName}
                     </p>
-                    <p className='text-sm text-gray-600'>
+                    <p className='flex justify-between text-sm text-gray-600'>
                       Department: {data.department}
                     </p>
                     <p className='text-sm text-gray-600'>Email: {data.email}</p>

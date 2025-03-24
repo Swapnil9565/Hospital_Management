@@ -4,3 +4,12 @@
     border-radius: 5px;
     color: white;
 }
+
+@media screen and (max-width: 480px) {
+    .active{
+       
+        padding:5px 10px;
+        border-radius: 2px;
+        
+    }
+}

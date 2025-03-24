@@ -9,8 +9,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, useParams } from "react-router-dom";
 
 function Appointment() {
-    const navigate=useNavigate();
-    const {id}=useParams();
+  const navigate=useNavigate();
+  const {id}=useParams();
 
   const [patientInfo, setPatienInfo] = useState({
     fName: "",
@@ -59,6 +59,7 @@ function Appointment() {
           Authorization:localStorage.getItem("token")
         }
       })
+      
     }
     else{
       //Creating new appointment

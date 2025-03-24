@@ -42,17 +42,18 @@ const User = () => {
 
   return (
     <div>
-      <div className='h-[83vh] border-2 border-black m-5 rounded-md'>
-        <h1 className='font-bold text-2xl text-green-900 uppercase m-5'>
-          All Users
-        </h1>
-
-        {loading ? (
-          <UserSkeleton rows={10} columns={5}/>
-        ) : (
-          <table className='w-full border-collapse mt-10 border-separate border-spacing-y-3'>
+    <div className='h-screen md:h-[83vh] border-2 border-black m-2 md:m-5 rounded-md md:overflow-hidden overflow-x-auto'>
+      <h1 className='font-bold text-xl md:text-2xl text-green-900 uppercase m-5'>
+        All Users
+      </h1>
+  
+      {loading ? (
+        <UserSkeleton rows={10} columns={5}/>
+      ) : (
+        <div className='w-full md:overflow-hidden overflow-x-auto'>
+          <table className='w-full border-collapse mt-0 md:mt-10 border-separate border-spacing-y-3 text-sm md:text-base'>
             <thead>
-              <tr className='px-8 text-center'>
+              <tr className='text-center'>
                 <th>Sr No.</th>
                 <th>User Id</th>
                 <th>Username</th>
@@ -63,7 +64,7 @@ const User = () => {
             <tbody>
               {users?.length > 0 ? (
                 currentRows.map((user, index) => (
-                  <tr key={index} className='text-center px-8 odd:bg-blue-200'>
+                  <tr key={index} className='text-center odd:bg-blue-200'>
                     <td>{index + 1}</td>
                     <td>{user._id}</td>
                     <td>{user.username}</td>
@@ -73,22 +74,25 @@ const User = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan='8' className='text-center text-red-500'>
+                  <td colSpan='5' className='text-center text-red-500'>
                     No Users found.
                   </td>
                 </tr>
               )}
             </tbody>
           </table>
-        )}
-        <PaginationComponent
-          totalItems={users.length}
-          currentPage={currentPage}
-          rowsPerPage={rowsPerPage}
-          onPageChange={handlePageChange}
-        />
-      </div>
+        </div>
+      )}
+      <PaginationComponent
+        totalItems={users.length}
+        currentPage={currentPage}
+        rowsPerPage={rowsPerPage}
+        onPageChange={handlePageChange}
+        className="relative mt-5"
+      />
     </div>
+  </div>
+  
   );
 };
 

@@ -29,9 +29,9 @@ const Topbar = () => {
   return (
     <div>
     <ToastContainer className="w-[25vw]"/>
-    <div className='w-[80vw] h-[10vh] flex items-center justify-between px-10 gap-5 bg-zinc-900'>
-        <p className='text-xl font-bold tracking-wider text-blue-200'>MEDZONE</p>
-        <p className='text-red-500 font-semibold cursor-pointer' onClick={handleAdminLogout}>Log Out <FontAwesomeIcon icon={faRightFromBracket}/></p>
+    <div className='w-full md:w-[80vw] h-[12vh] md:h-[10vh] flex items-center justify-between px-2 md:px-10 gap-5 bg-zinc-900'>
+        <p className='text-md md:text-xl font-bold tracking-wider text-blue-200'>MEDZONE</p>
+        <p className='text-red-500 font-semibold cursor-pointer text-sm md:text-lg' onClick={handleAdminLogout}>Log Out <FontAwesomeIcon icon={faRightFromBracket}/></p>
     </div>
     </div>
   )

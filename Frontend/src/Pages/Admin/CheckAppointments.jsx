@@ -42,17 +42,17 @@ const SeeAppointments = () => {
 
   return (
     <div>
-      <div className="h-[83vh] border-2 border-black m-5 rounded-md">
-        <h1 className="font-bold text-2xl text-green-900 uppercase m-5">
-          All Patients
-        </h1>
-
-        {loading ? (
-          <CheckAppoSkeleton/>
-        ) : (
-          <table className="w-full border-collapse mt-10 border-separate border-spacing-y-3">
+    <div className="h-screen md:h-[83vh] border-2 border-black m-2 md:m-5 rounded-md overflow-x-auto">
+      <h1 className="font-bold text-xl md:text-2xl text-green-900 uppercase m-5">
+        All Patients
+      </h1>
+      {loading ? (
+        <CheckAppoSkeleton/>
+      ) : (
+        <div className="w-full overflow-x-auto">
+          <table className="w-full border-collapse mt-5 md:mt-10 border-separate border-spacing-x-3 border-spacing-y-3 text-sm md:text-base">
             <thead>
-              <tr className="px-8 text-center">
+              <tr className="text-center">
                 <th>Patient ID</th>
                 <th>First Name</th>
                 <th>Last Name</th>
@@ -64,10 +64,10 @@ const SeeAppointments = () => {
               </tr>
             </thead>
             <tbody>
-              {appointments?.length>0 ? (
+              {appointments?.length > 0 ? (
                 currentRows.map((appointment, index) => (
-                  <tr key={index} className="text-center px-8 odd:bg-blue-200">
-                    <td>{firstRowIndex +index+1}</td>
+                  <tr key={index} className="text-center">
+                    <td>{firstRowIndex + index + 1}</td>
                     <td>{appointment.fName}</td>
                     <td>{appointment.lName}</td>
                     <td>{appointment.gender}</td>
@@ -86,10 +86,18 @@ const SeeAppointments = () => {
               )}
             </tbody>
           </table>
-        )}
-      <PaginationComponent totalItems={appointments.length} currentPage={currentPage} rowsPerPage={rowsPerPage} onPageChange={handlePageChange}/>
-      </div>
+        </div>
+      )}
+      <PaginationComponent 
+        totalItems={appointments.length} 
+        currentPage={currentPage} 
+        rowsPerPage={rowsPerPage} 
+        onPageChange={handlePageChange} 
+        className="relative mt-5"
+      />
     </div>
+  </div>
+  
   );
 };
 

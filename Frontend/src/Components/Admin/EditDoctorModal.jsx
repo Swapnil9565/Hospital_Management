@@ -114,7 +114,7 @@ export default function EditDoctorModal({ setIsOpenEditModal,doctorId }) {
   };
 
   return (
-    <div className="max-w-lg mx-auto p-3 bg-white rounded-2xl shadow-lg">
+    <div className="w-80 md:w-[30vw]  mx-auto p-3 bg-white rounded-2xl shadow-lg">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-2xl font-semibold text-center">Edit Doctor</h2>
         <FontAwesomeIcon

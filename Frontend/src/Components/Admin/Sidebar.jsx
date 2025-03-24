@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import adminAvatar from "../../Assets/admin-avatar.png"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faCalendarCheck, faHouse, faMessage, faUser, faUserDoctor, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarCheck, faDashboard, faHouse, faMessage, faUser, faUserDoctor, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 const Sidebar = () => {
+  
+  const [showSidebarText,setShowSidebarText]=useState(null);
   const [userData, setUserData] = useState({});
     
     useEffect(() => {
@@ -13,23 +15,51 @@ const Sidebar = () => {
         setUserData(JSON.parse(data));
       }
     }, [])
+
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+    // Update state on window resize
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 768);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    const menuItems=[
+        {id:1,icon:faHouse,text:"Dashboard",path:"dashboard",iconColor:"blueViolet"},
+        {id:2,icon:faUserDoctor,text:"Doctors",path:"doctors",iconColor:"red"},
+        {id:3,icon:faUser,text:"Users",path:"allUsers",iconColor:"springgreen"},
+        {id:4,icon:faCalendarCheck,text:"Check Appointments",path:"checkAppointments",iconColor:"violet"},
+        {id:5,icon:faUserPlus,text:"Add a doctor",path:"addDoctors",iconColor:"tomato"},
+        {id:6,icon:faMessage,text:"Messages",path:"messages",iconColor:"green"},
+    ]
+
   return (
-    <div className='w-[20vw] h-screen text-black bg-slate-900'>
+    <div className='w-[14vw] md:w-[20vw] h-[113vh] md:h-screen text-black bg-slate-900'>
       <div className='flex flex-col items-center justify-center bg-[#053A6F] text-white py-5'>
-         <img src={adminAvatar} alt="admin-avatar" className='w-24'/>    
-         <p className='text-sm text-gray-400 my-2'>Admin</p>
-         <p>{userData?.username}</p>
+         <img src={adminAvatar} alt="admin-avatar" className='w-12 md:w-24'/>    
+         <p className='hidden md:block text-sm text-gray-400 my-2'>Admin</p>
+         <p className='hidden md:block'>{userData?.username}</p>
       </div>
-        <div>
-            <ul className='px-5 py-10 text-md text-white'>
-                <li className='mb-3 cursor-pointer'><NavLink to="/admin/dashboard" className="flex gap-5 items-center px-2 py-1"><FontAwesomeIcon icon={faHouse} size="lg"  color='blueviolet'/>Dashboard</NavLink></li>
-                <li className='mb-3 cursor-pointer'><NavLink to="/admin/doctors" className="flex gap-5 items-center px-2 py-1"><FontAwesomeIcon icon={faUserDoctor} size="lg"  color='red'/>Doctors</NavLink></li>
-                <li className='mb-3 cursor-pointer'><NavLink to="/admin/allUsers" className="flex gap-5 items-center px-2 py-1"><FontAwesomeIcon icon={faUser} size="lg"  color='springgreen'/>Users</NavLink></li>
-                <li className='mb-3 cursor-pointer'><NavLink to="/admin/checkAppointments" className="flex gap-5 items-center px-2 py-1"><FontAwesomeIcon icon={faCalendarCheck} size="lg"  color='violet'/>Check Appointments</NavLink></li>
-                <li className='mb-3 cursor-pointer'><NavLink to="/admin/addDoctors" className="flex gap-5 items-center px-2 py-1"><FontAwesomeIcon icon={faUserPlus} size="lg"  color='tomato'/>Add a doctor</NavLink></li>
-                <li className='mb-3 cursor-pointer'><NavLink to="/admin/messages" className="flex gap-5 items-center px-2 py-1"><FontAwesomeIcon icon={faMessage} size="lg"  color='green'/>Messages</NavLink></li>
-            </ul>
-        </div>
+      <div>
+    <ul className="py-2 md:px-5 md:py-10 text-md text-white flex flex-col items-center gap-y-5 md:gap-y-0 md:items-start ">
+         
+         {menuItems.map(({id,icon,text,path,iconColor})=>{
+             return  <li className="mb-3 cursor-pointer" key={id} onMouseEnter={()=>setShowSidebarText(id)} onMouseLeave={()=>setShowSidebarText(null)}>
+                 <NavLink to={`/admin/${path}`} className="flex gap-5 items-center px-2 py-1">
+                 <FontAwesomeIcon icon={icon} size="lg" color={iconColor} />
+                 <span className="hidden md:block">{text}</span>
+             </NavLink>
+             {isMobile&&showSidebarText===id&& <span className="absolute left-16 bg-gray-800 text-white text-sm px-3 py-1 rounded-md">
+                        {text}</span>}
+            </li>
+         })}
+
+       
+      
+    </ul>
+</div>
+
     </div>
   )
 }

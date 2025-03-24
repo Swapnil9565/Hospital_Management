@@ -6,8 +6,10 @@ import { Outlet } from 'react-router-dom'
 const Admin = () => {
   return (
     <div className='flex w-full'>
+      <div>
       <Sidebar/>
-      <div className="w-[80vw]">
+      </div>
+      <div className="w-full md:w-[80vw] ">
       <Topbar/>
       <Outlet/>
       </div>

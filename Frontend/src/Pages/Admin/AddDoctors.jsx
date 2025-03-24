@@ -72,92 +72,87 @@ export default function AddDoctor() {
   };
 
   return (
-    <div
-      className='h-[90vh] pt-5 bg-slate-800'>
-      <ToastContainer className='w-[25vw]' />
-      <div className='max-w-lg mx-auto p-3 bg-[#E0E0E0] rounded-2xl shadow-lg'>
-        <h2 className='text-2xl font-semibold text-center mb-4 text-blue-900'>
-          Add a New Doctor
-        </h2>
-        <form
-          onSubmit={handleSubmit}
-          encType='multipart/form-data'
-          className='space-y-4'>
-          <div>
-            <label className='block font-medium'>Upload Photo</label>
-            <input
-              type='file'
-              name='photo'
-              accept='image/*'
-              onChange={handleFileChange}
-              className='mt-1 w-full border rounded-lg p-1'
-            />
-          </div>
-          <div>
-            <label className='block font-medium'>Doctor Name</label>
-            <input
-              type='text'
-              name='docName'
-              value={formData.docName}
-              onChange={handleChange}
-              className='mt-1 w-full border rounded-lg p-1'
-              required
-            />
-          </div>
-          <div>
-            <label className='block font-medium'>Specialization</label>
-            <input
-              type='text'
-              name='specialization'
-              value={formData.specialization}
-              onChange={handleChange}
-              className='mt-1 w-full border rounded-lg p-1'
-              required
-            />
-          </div>
-          <div>
-            <label className='block font-medium'>City</label>
-            <input
-              type='text'
-              name='city'
-              value={formData.city}
-              onChange={handleChange}
-              className='mt-1 w-full border rounded-lg p-1'
-              required
-            />
-          </div>
-          <div>
-            <label className='block font-medium'>Gender</label>
-            <select
-              name='gender'
-              value={formData.gender}
-              onChange={handleChange}
-              className='mt-1 w-full border rounded-lg p-1'
-              required>
-              <option value=''>Select Gender</option>
-              <option value='Male'>Male</option>
-              <option value='Female'>Female</option>
-              <option value='Other'>Other</option>
-            </select>
-          </div>
-          <div>
-            <label className='block font-medium'>Contact Number</label>
-            <input
-              type='tel'
-              name='contact'
-              value={formData.contact}
-              onChange={handleChange}
-              className='mt-1 w-full border rounded-lg p-1'
-              required
-            />
-          </div>
-          <button
-            type='submit'
-            className='w-full bg-[#053A6F] text-white p-2 rounded-lg '>
-            Add Doctor
-          </button>
-        </form>
-      </div>
+    <div className='h-screen pt-0 md:pt-5 bg-slate-800 flex justify-center items-center px-4'>
+    <ToastContainer className='w-[60vw] md:w-[40vw]' />
+    <div className='w-full max-w-lg mx-auto p-2 md:p-5 bg-[#E0E0E0] rounded-2xl shadow-lg'>
+      <h2 className='text-xl sm:text-2xl font-semibold text-center mb-4 text-blue-900'>
+        Add a New Doctor
+      </h2>
+      <form onSubmit={handleSubmit} encType='multipart/form-data' className='space-y-4'>
+        <div>
+          <label className='block text-sm md:text-lg'>Upload Photo</label>
+          <input
+            type='file'
+            name='photo'
+            accept='image/*'
+            onChange={handleFileChange}
+            className='mt-1 w-full border rounded-lg p-1 md:p-2'
+          />
+        </div>
+        <div>
+          <label className='block text-sm md:text-lg'>Doctor Name</label>
+          <input
+            type='text'
+            name='docName'
+            value={formData.docName}
+            onChange={handleChange}
+            className='mt-1 w-full border rounded-lg p-1 md:p-2'
+            required
+          />
+        </div>
+        <div>
+          <label className='block text-sm md:text-lg'>Specialization</label>
+          <input
+            type='text'
+            name='specialization'
+            value={formData.specialization}
+            onChange={handleChange}
+            className='mt-1 w-full border rounded-lg p-1 md:p-2'
+            required
+          />
+        </div>
+        <div>
+          <label className='block text-sm md:text-lg'>City</label>
+          <input
+            type='text'
+            name='city'
+            value={formData.city}
+            onChange={handleChange}
+            className='mt-1 w-full border rounded-lg p-1 md:p-2'
+            required
+          />
+        </div>
+        <div>
+          <label className='block text-sm md:text-lg'>Gender</label>
+          <select
+            name='gender'
+            value={formData.gender}
+            onChange={handleChange}
+            className='mt-1 w-full border rounded-lg p-1 md:p-2'
+            required>
+            <option value=''>Select Gender</option>
+            <option value='Male'>Male</option>
+            <option value='Female'>Female</option>
+            <option value='Other'>Other</option>
+          </select>
+        </div>
+        <div>
+          <label className='block text-sm md:text-lg'>Contact Number</label>
+          <input
+            type='tel'
+            name='contact'
+            value={formData.contact}
+            onChange={handleChange}
+            className='mt-1 w-full border rounded-lg p-1 md:p-2'
+            required
+          />
+        </div>
+        <button type='submit' className='w-full bg-[#053A6F] text-sm md:text-lg text-white p-1 md:p-2 rounded-lg hover:bg-[#032A50] transition'>
+          Add Doctor
+        </button>
+      </form>
     </div>
+  </div>
+  
   );
 }

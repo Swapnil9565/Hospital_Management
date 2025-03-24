@@ -155,7 +155,7 @@ const Setting = () => {
           />
           <FontAwesomeIcon icon={showPassword? faEye:faEyeSlash} onClick={()=>setShowPassword(!showPassword)} className="cursor-pointer absolute right-2 top-1/2 -translate-y-1/2"/>
         </div>
-        <button className='mt-4 bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-all text-sm md:text-lg'>
+        <button className='cursor-pointer mt-4 bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-all text-sm md:text-lg'>
           Update Profile
         </button>
       </form>
