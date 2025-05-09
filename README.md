@@ -135,4 +135,4 @@ Npm or Yarn
 
 Swapnil Mohite  
 [GitHub](https://github.com/SwapnilMohite)  
-[LinkedIn](https://linkedin.com/in/swapnilmohite)  
+[LinkedIn](https://www.linkedin.com/in/swapnil-mohite-63b153248/)  
