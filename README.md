@@ -103,5 +103,36 @@ Npm or Yarn
     
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+1. Sign Up Page
+![SignUp](https://github.com/user-attachments/assets/bcbfe3f5-140e-4883-a0bd-b88aef9d3661)
 
+2. Home page
+![HomePage](https://github.com/user-attachments/assets/fc1e8ac6-be30-4ab4-9459-609a634875b9)
+
+3. Appointment Booking Page
+![AppointmentBookingPage](https://github.com/user-attachments/assets/874550c1-68ac-4864-a987-ad6c03869de8)
+
+4. User Dashboard
+![UserDashboard](https://github.com/user-attachments/assets/77db3eb3-170d-4b53-b15c-7717b5f61190)
+
+5. Admin Dashboard
+![Admin dashboard](https://github.com/user-attachments/assets/2c09e5f3-53b5-4895-a44d-ba4fa891b242)
+
+6. Doctors List
+![DoctorsList](https://github.com/user-attachments/assets/7f562ea0-93a0-4c0e-9768-8032b1a1dbb9)
+
+7. Check Appointment Page
+![appointments](https://github.com/user-attachments/assets/34ec54ef-5b62-4357-addb-645e65d1d525)
+
+8. Add Doctors form
+![addDoctorsImage](https://github.com/user-attachments/assets/f4ff0a52-d8fb-4eff-8a2a-437ea7796fb3)
+
+9. Messages
+![messages](https://github.com/user-attachments/assets/37fae568-226d-4e36-9459-a04ae3248438)
+
+
+## Author
+
+Swapnil Mohite  
+[GitHub](https://github.com/SwapnilMohite)  
+[LinkedIn](https://linkedin.com/in/swapnilmohite)  
