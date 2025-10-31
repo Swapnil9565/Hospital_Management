@@ -14,8 +14,7 @@
   },
   "scripts": {
     "start": "nodemon Backend/server.js",
-    "dev": "nodemon Backend/server.js",
-    "build": "npm install && npm install --prefix Frontend && npm run build --prefix Frontend"
+    "dev": "nodemon Backend/server.js"
   },
   "name": "backend",
   "version": "1.0.0",

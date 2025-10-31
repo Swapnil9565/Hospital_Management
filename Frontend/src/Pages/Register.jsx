@@ -35,7 +35,7 @@ const Register = () => {
       e.preventDefault();
       try {
         const res = await axios.post(
-          "https://hospital-management-99yz.onrender.com/api/auth/register",
+          "http://localhost:3000/api/auth/register",
           registerData,
           {
             "Content-Type": "application/json",
@@ -59,7 +59,7 @@ const Register = () => {
           return alert("Something went wrong");
         }
       } catch (error) {
-        toast.error("User Already exist with this email", {
+        toast.error("User already exist with this email", {
           position: "top-center",
           autoClose: 3000,
           hideProgressBar: false,

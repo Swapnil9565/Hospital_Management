@@ -10,7 +10,7 @@ The Hospital Appointment Management System is a MERN stack (MongoDB, Express.js,
 
 
 ## Live Demo
-https://hospital-management-99yz.onrender.com/
+http://localhost:3000/
 
 ## Features
 

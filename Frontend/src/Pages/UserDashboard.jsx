@@ -53,7 +53,7 @@ const UserDashboard = () => {
           }
       
           const res = await axios.delete(
-            `https://hospital-management-99yz.onrender.com/api/user/deleteAccount/${userData._id}`,
+            `http://localhost:3000/api/user/deleteAccount/${userData._id}`,
             {
               headers: {
                 "Content-Type": "application/json",

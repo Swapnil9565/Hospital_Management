@@ -13,7 +13,7 @@ const SeeAppointments = () => {
     const fetchAppointments = async () => {
       try {
         const res = await axios.get(
-          "https://hospital-management-99yz.onrender.com/api/admin/fetchAppointments",
+          "http://localhost:3000/api/admin/fetchAppointments",
           {
             headers: {
               "Content-Type": "application/json",

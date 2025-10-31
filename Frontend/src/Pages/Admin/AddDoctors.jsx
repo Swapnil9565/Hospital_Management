@@ -31,7 +31,7 @@ export default function AddDoctor() {
     data.append("contact", formData.contact);
     try {
       const res = await axios.post(
-        "https://hospital-management-99yz.onrender.com/api/admin/addDoctor",
+        "http://localhost:3000/api/admin/addDoctor",
         data,
         {
           headers: {

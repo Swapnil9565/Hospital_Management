@@ -21,7 +21,7 @@ const CheckDoctors = () => {
     useEffect(()=>{
         const fetchDoctors=async()=>{
             try {
-                const res=await axios.get("https://hospital-management-99yz.onrender.com/api/admin/fetchDoctors",{
+                const res=await axios.get("http://localhost:3000/api/admin/fetchDoctors",{
                     headers:{
                         "Content-Type":"application/json"
                     }
