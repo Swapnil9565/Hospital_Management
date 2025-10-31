@@ -36,7 +36,7 @@ export default function EditDoctorModal({ setIsOpenEditModal,doctorId }) {
           if(!doctorId) return
           try {
             const res = await axios.get(
-              `http://localhost:3000/api/admin/fetchDoctorById/${doctorId}`,
+              `https://hospital-management-pe6s.onrender.com/api/admin/fetchDoctorById/${doctorId}`,
               {
                 headers: {
                   "Content-Type": "application/json"
@@ -79,7 +79,7 @@ export default function EditDoctorModal({ setIsOpenEditModal,doctorId }) {
       data.append("doctorId", doctorId);
 
       const res = await axios.put(
-        `http://localhost:3000/api/admin/editDoctor/${doctorId}`,
+        `https://hospital-management-pe6s.onrender.com/api/admin/editDoctor/${doctorId}`,
         data,
         {
           headers: {

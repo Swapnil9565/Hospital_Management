@@ -20,7 +20,7 @@ const Setting = () => {
   const fetchUserData = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:3000/api/user/fetchUserInfo",
+        "https://hospital-management-pe6s.onrender.com/api/user/fetchUserInfo",
         {
           headers: {
             "Content-Type": "application/json",
@@ -56,7 +56,7 @@ const Setting = () => {
     e.preventDefault();
     try {
       const res = await axios.patch(
-        "http://localhost:3000/api/user/updateProfile",
+        "https://hospital-management-pe6s.onrender.com/api/user/updateProfile",
         { username: formData.username, password: formData.password },
         { headers:
            { 

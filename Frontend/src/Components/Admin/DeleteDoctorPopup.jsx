@@ -7,7 +7,7 @@ const DeleteDoctorPopup = ({setIsOpenDeletePopup,doctorId}) => {
         const handleDeleteDoctor=async()=>{
             if (!doctorId) return;
             try {
-                const res=await axios.delete(`http://localhost:3000/api/admin/deleteDoctor/${doctorId}`,{
+                const res=await axios.delete(`https://hospital-management-pe6s.onrender.com/api/admin/deleteDoctor/${doctorId}`,{
                     headers:{
                         "Content-Type":"application/json"
                     }

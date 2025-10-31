@@ -24,7 +24,7 @@ const CheckMessages = () => {
     const fetchMessages = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:3000/api/admin/fetchMessages",
+          "https://hospital-management-pe6s.onrender.com/api/admin/fetchMessages",
           {
             headers: {
               "Content-Type": "application/json",

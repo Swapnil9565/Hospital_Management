@@ -13,7 +13,7 @@ const User = () => {
     const fetchUsers = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:3000/api/admin/fetchUsers",
+          "https://hospital-management-pe6s.onrender.com/api/admin/fetchUsers",
           {
             headers: {
               "Content-Type": "application/json",

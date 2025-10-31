@@ -18,7 +18,7 @@ const Message = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/user/message",
+        "https://hospital-management-pe6s.onrender.com/api/user/message",
         formData,
         {
           headers: {

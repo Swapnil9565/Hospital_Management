@@ -28,7 +28,7 @@ function Appointment() {
     const fetchAppointmentData=async()=>{
       if(id){
         try {
-          const res= await axios.get(`http://localhost:3000/api/user/appointment/${id}`,{
+          const res= await axios.get(`https://hospital-management-pe6s.onrender.com/api/user/appointment/${id}`,{
             headers:{
               "Content-Type":"application/json"
             }
@@ -53,7 +53,7 @@ function Appointment() {
     let res;
     if(id){
       //updating existing appointment
-       res=await axios.put(`http://localhost:3000/api/user/updateAppointment/${id}`,patientInfo,{
+       res=await axios.put(`https://hospital-management-pe6s.onrender.com/api/user/updateAppointment/${id}`,patientInfo,{
         headers:{
           "Content-Type":"application/json",
           Authorization:localStorage.getItem("token")
@@ -63,7 +63,7 @@ function Appointment() {
     }
     else{
       //Creating new appointment
-       res=await axios.post("http://localhost:3000/api/user/appointment",patientInfo,{
+       res=await axios.post("https://hospital-management-pe6s.onrender.com/api/user/appointment",patientInfo,{
         headers:{
           "Content-Type":"application/json",
           "Authorization":localStorage.getItem("token")

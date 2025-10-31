@@ -35,7 +35,7 @@ const Register = () => {
       e.preventDefault();
       try {
         const res = await axios.post(
-          "http://localhost:3000/api/auth/register",
+          "https://hospital-management-pe6s.onrender.com/api/auth/register",
           registerData,
           {
             "Content-Type": "application/json",

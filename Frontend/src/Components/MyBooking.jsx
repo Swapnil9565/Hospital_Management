@@ -25,7 +25,7 @@ const MyBooking = () => {
       try {
         if (!userData._id) return;
         const res = await axios.get(
-          `http://localhost:3000/api/user/fetchBooking/${userData._id}`,
+          `https://hospital-management-pe6s.onrender.com/api/user/fetchBooking/${userData._id}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -69,7 +69,7 @@ const MyBooking = () => {
   
   const cancelAppointment=async(appoId)=>{
     try {
-      const res=await axios.delete(`http://localhost:3000/api/user/cancelAppointment/${appoId}`,{
+      const res=await axios.delete(`https://hospital-management-pe6s.onrender.com/api/user/cancelAppointment/${appoId}`,{
         headers:{
           "Content-Type":"application/json"
         }
