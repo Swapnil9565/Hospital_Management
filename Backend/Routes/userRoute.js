@@ -1,12 +1,14 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
+const OpenAI=require("openai");
+const dotenv=require("dotenv");
 const router = express.Router();
 const authMiddleware = require("../middlewares/authMiddleware");
 const appointmentModel = require("../models/appointmentModel");
 const MessageModel = require("../models/MessageModel");
 const moment = require("moment");
 const userModel = require("../models/userModel");
-
+dotenv.config();
 //Create a new appointment
 router.post("/appointment", authMiddleware, async (req, res) => {
   const user = req.user;
@@ -195,12 +197,14 @@ router.patch("/updateProfile", authMiddleware, async (req, res) => {
       .json({ message: "Internal Server Error", error: error.message });
   }
 });
-
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 router.post("/chat", async (req, res) => {
   try {
     const userMessage = req.body.message;
 
-    const completion = await client.chat.completions.create({
+    const completion = await openai.chat.completions.create({
       model: "gpt-5.1",
       messages: [
         { role: "system", content: "You are a hospital appointment assistant." },
