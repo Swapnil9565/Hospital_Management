@@ -16,9 +16,10 @@ const app=express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-  origin: ["https://hospital-management-0oww.onrender.com"], 
+  origin: ["http://localhost:5173","https://hospital-management-0oww.onrender.com"], 
   methods: ["GET", "POST", "PUT", "PATCH","DELETE"],
-  credentials: true
+  credentials: true,
+   allowedHeaders: ["Content-Type", "Authorization"],
 }
 ));
 

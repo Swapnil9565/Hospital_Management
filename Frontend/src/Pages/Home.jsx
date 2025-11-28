@@ -9,6 +9,7 @@ import ServicesInfo from '../Components/ServicesInfo';
 import Footer from '../Components/Footer';
 import { toast } from 'react-toastify';
 import Message from '../Components/Admin/Message';
+import Chatbot from '../Components/Chatbot';
 
 function Home() {
   const [isLoggedIn,setIsLoggedIn]=useState(false);
@@ -57,6 +58,7 @@ function Home() {
     <ServicesInfo/>
     <Message/>
     <Footer/>
+    <Chatbot/>
     </div>     
     </>
   )

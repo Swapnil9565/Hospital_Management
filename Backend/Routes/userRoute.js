@@ -195,4 +195,29 @@ router.patch("/updateProfile", authMiddleware, async (req, res) => {
       .json({ message: "Internal Server Error", error: error.message });
   }
 });
+
+router.post("/chat", async (req, res) => {
+  try {
+    const userMessage = req.body.message;
+
+    const completion = await client.chat.completions.create({
+      model: "gpt-5.1",
+      messages: [
+        { role: "system", content: "You are a hospital appointment assistant." },
+        { role: "user", content: userMessage }
+      ]
+    });
+
+    res.json({ reply: completion.choices[0].message.content });
+
+  } catch (err) {
+    console.error(err);
+
+    if (err.status === 429) {
+      return res.status(429).json({ reply: "⚠️ Too many requests. Please wait and try again." });
+    }
+
+    res.status(500).json({ reply: "⚠️ Server error. Try again later." });
+  }
+});
 module.exports = router;
