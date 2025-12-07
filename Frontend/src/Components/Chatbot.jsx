@@ -43,7 +43,7 @@ export default function Chatbot() {
 
     setLoading(false);
   };
-
+  console.log(messages);
   const handleSend = () => {
     if (!input.trim()) return;
 
@@ -60,15 +60,18 @@ export default function Chatbot() {
   return (
     <div className='fixed bottom-6 right-6 z-50'>
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className='bg-blue-600 text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-700 transition'>
+        onClick={() => setIsOpen(true)}
+        className='cursor-pointer bg-blue-600 text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-700 transition'>
         💬 Chat
       </button>
 
       {isOpen && (
         <div className='w-80 h-96 bg-white border shadow-xl rounded-md mt-3 flex flex-col'>
-          <div className='bg-blue-600 text-white p-3 font-semibold rounded-t-md'>
+          <div className='flex justify-between items-center bg-blue-600 text-white p-3 font-semibold rounded-t-md'>
             🏥 AI Health Assistant
+            <div>
+              <button className=" text-xl cursor-pointer" onClick={()=>setIsOpen(false)}>X</button>
+            </div>
           </div>
 
           <div className='flex-1 overflow-y-auto p-3 space-y-3'>
