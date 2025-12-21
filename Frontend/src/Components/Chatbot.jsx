@@ -43,7 +43,7 @@ export default function Chatbot() {
 
     setLoading(false);
   };
-  console.log(messages);
+ 
   const handleSend = () => {
     if (!input.trim()) return;
 
