@@ -322,7 +322,7 @@ function Appointment() {
                   <option value='Cardiology'>Cardiology</option>
                   <option value='Neurology'>Neurology</option>
                   <option value='Dermatology'>Dermatology</option>
-                  <option value='Orthology'>Orthology</option>
+                  <option value='Orthopedic'>Orthopedic</option>
                   <option value='Paediatrics'>Paediatrics</option>
                   <option value='Physiology'>Physiology</option>
                 </select>

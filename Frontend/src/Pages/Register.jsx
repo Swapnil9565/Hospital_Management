@@ -86,11 +86,11 @@ const Register = () => {
         className='text-bold m-5 text-md md:text-xl cursor-pointer'
         onClick={() => navigate("/")}
       />
+      <div className='flex h-[70vh] justify-center items-center'>
+        <div className='w-full max-w-md bg-transparent rounded-lg shadow-2xl p-3 md:p-6'>
       <h1 className='text-center text-blue-300 font-bold text-3xl md:text-4xl pt-5 md:pt-10'>
         MedZone
       </h1>
-      <div className='flex h-[70vh] justify-center items-center'>
-        <div className='w-full max-w-md bg-transparent rounded-lg shadow-2xl p-3 md:p-6'>
           <h2 className='text-xl md:text-2xl font-normal md:font-bold text-center'>Sign Up</h2>
           <form className='mt-6 space-y-' onSubmit={handleRegister}>
           <div>

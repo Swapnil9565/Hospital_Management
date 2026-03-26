@@ -66,7 +66,7 @@ export default function Chatbot() {
       </button>
 
       {isOpen && (
-        <div className='w-80 h-96 bg-white border shadow-xl rounded-md mt-3 flex flex-col'>
+        <div className='w-80 h-96 bg-white shadow-xl rounded-md mt-3 flex flex-col'>
           <div className='flex justify-between items-center bg-blue-600 text-white p-3 font-semibold rounded-t-md'>
             🏥 AI Health Assistant
             <div>
@@ -92,7 +92,7 @@ export default function Chatbot() {
             )}
           </div>
 
-          <div className='flex border-t'>
+          <div className='flex border rounded-b-md'>
             <input
               type='text'
               className='flex-1 px-3 py-2 outline-none'
@@ -103,7 +103,7 @@ export default function Chatbot() {
             />
             <button
               onClick={handleSend}
-              className='bg-blue-600 text-white px-4 hover:bg-blue-700'
+              className='bg-blue-600 text-white px-4 hover:bg-blue-700 rounded-br-md'
               disabled={loading}>
               Send
             </button>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { ToastContainer,toast } from 'react-toastify';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
+import { faArrowLeft, faTriangleExclamation } from "@fortawesome/free-solid-svg-icons"
 import MyBooking from '../Components/MyBooking'
 import Setting from '../Components/Setting'
 import { useNavigate } from 'react-router-dom'
@@ -9,6 +9,7 @@ import axios from 'axios';
 
 const UserDashboard = () => {
   const navigate=useNavigate();
+     const [isOpenDeleteModal,setIsDeleteOpenModal]=useState(false);
     const [userData,setUserData]=useState({});
     const [displaySection,setDisplaySection]=useState("MyBooking");
 
@@ -88,11 +89,22 @@ const UserDashboard = () => {
           );
         }
       };
+   
+
       
   return (
-  <div className='bg-[#F0F8FF] h-[160vh] md:h-screen'>
+  <div className={`${isOpenDeleteModal?'z-0':'z-10'} bg-[#F0F8FF] h-[160vh] md:h-screen`}>
   {/* <ToastContainer className='mt-10 w-[25vw]' /> */}
   <FontAwesomeIcon icon={faArrowLeft} size='xl' color='blue' className='cursor-pointer mx-10 md:mx-[50px] my-4' onClick={()=>navigate("/")}/>
+    {isOpenDeleteModal&&<div className='bg-[#565656] flex items-center justify-center flex-col absolute top-10 left-[50%] mx-auto w-64 rounded-md p-3'>
+         <FontAwesomeIcon icon={faTriangleExclamation} className='text-white text-4xl mb-3' />
+         <h1 className='text-red-400 font-bold text-center text-xl'>Delete</h1>
+         <p className='text-center text-white text-md text-slate-400'>Are you sure to delete your account?</p>
+         <div className='flex items-center justify-center gap-5 mt-3 text-white'>
+         <button onClick={handleDeleteAccount} className='bg-green-600 border-2 border-green-600 p-1 rounded-md cursor-pointer'>Confirm</button>
+         <button onClick={()=>setIsDeleteOpenModal(false)} className='border-2 border-green-600 p-1 rounded-md cursor-pointer'>Cancel</button>
+         </div>
+     </div>}
    <div className="flex flex-col md:flex-row gap-5 justify-center  pt-5">
     <div className="flex flex-col justify-between h-[70vh] px-3 mx-8 md:mx-0 md:px-10 shadow-md py-2 bg-white">
       <div>   
@@ -108,7 +120,7 @@ const UserDashboard = () => {
       </div>
       <div className="flex flex-col gap-5 items-center">
         <button className="cursor-pointer text-white bg-slate-900 text-sm md:text-lg py-2 w-60 rounded-md" onClick={handleLogout}>Log out</button>
-        <button className="cursor-pointer bg-red-500 text-white text-sm md:text-lg py-2 w-60  rounded-md" onClick={handleDeleteAccount}>Delete Account</button>
+        <button className="cursor-pointer bg-red-500 text-white text-sm md:text-lg py-2 w-60  rounded-md" onClick={()=>setIsDeleteOpenModal(true)}>Delete Account</button>
       </div>
     </div>
     <div className="flex flex-col md:w-[40vw] h-[70vh] mx-8 md:ml-10 p-4 bg-white">
