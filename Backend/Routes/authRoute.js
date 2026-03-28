@@ -26,8 +26,7 @@ router.post("/register",async (req,res)=>{
             password:hashPassword,
             role
         })
-        const token=generateJwtToken(user);
-        res.status(200).json({message:"Registered successfully",token,user:{username,role}})
+        res.status(200).json({message:"Registered successfully",user:{username,role}})
         
     } catch (error) {
         res.status(400).json({"message":error.message});
